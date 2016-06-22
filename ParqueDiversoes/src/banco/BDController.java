@@ -6,6 +6,7 @@
 package banco;
 
 import classes.Funcionario;
+import classes.Loja;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,6 +64,20 @@ public class BDController {
     public Funcionario selectFuncionarioByCpf(String cpf) {
         return null;
     }
-
+    
+    public void insereLoja(Loja l) throws ClassNotFoundException, SQLException {
+        String categoria, nome, local;
+        
+        categoria = l.getCategoria();
+        nome = l.getNome();
+        local = l.getLocal();
+        
+        String query = "INSERT INTO Loja(categoria, nome, local) values "
+                + "('" + categoria + "', '" + nome + "', '" + local + "');";
+        
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
     //</editor-fold>
 }

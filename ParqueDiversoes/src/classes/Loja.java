@@ -17,4 +17,55 @@ public class Loja {
     private String nome;
     private String local;
     private ArrayList<Estoque> estoque;
+    
+    public Loja() {
+    
+    }
+
+    public Loja(int idLoja, String categoria, String nome, String local) {
+        this.idLoja = idLoja;
+        this.categoria = categoria;
+        this.nome = nome;
+        this.local = local;
+    }
+
+    public Loja(String categoria, String nome, String local) {
+        this.categoria = categoria;
+        this.nome = nome;
+        this.local = local;
+    }    
+
+    public int getIdLoja() {
+        return idLoja;
+    }
+
+    public void setIdLoja(int idLoja) {
+        this.idLoja = idLoja;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+    
+    
 }
