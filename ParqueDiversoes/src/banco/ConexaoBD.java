@@ -19,14 +19,14 @@ public class ConexaoBD {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
-    private static ConexaoBD instance;
+    public static ConexaoBD instance;
     
     public static ConexaoBD getInstance() throws ClassNotFoundException, SQLException {
         if (instance == null) {
-            return new ConexaoBD();
+            instance = new ConexaoBD();
         }
         
-        return null;
+        return instance;
     }
     
     private ConexaoBD() throws ClassNotFoundException, SQLException {
