@@ -31,7 +31,7 @@ public class ConexaoBD {
     
     private ConexaoBD() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        this.connection = (Connection) DriverManager.getConnection("jdbc:www2.bcc.unifal-mg.edu.br", "a14034", "a14034");
+        this.connection = (Connection) DriverManager.getConnection("jdbc:mysql://www2.bcc.unifal-mg.edu.br", "a14034", "a14034");
     }
 
     public ResultSet sqlQuery(String query) throws SQLException {
