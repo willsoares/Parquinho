@@ -28,7 +28,7 @@ public class Main extends javax.swing.JFrame {
 
         ConexaoBD conexaoBD = ConexaoBD.getInstance();
         
-        conexaoBD.sqlQuery("insert into atracao(nome, tipo, dataManutencao, status) values('Python', 'montanha-russa','22-06-2016');");
+        conexaoBD.executaSQL("insert into Atracao(nome, tipo, dataManutencao, status) values('Cobrinha', 'montanha-russa','2016-06-22', '1');");
     }
 
     /**
