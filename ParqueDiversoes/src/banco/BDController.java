@@ -7,6 +7,7 @@ package banco;
 
 import classes.Funcionario;
 import classes.Loja;
+import classes.Produto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,6 +41,38 @@ public class BDController {
 
     }
 
+    public void insereLoja(Loja l) throws ClassNotFoundException, SQLException {
+        String categoria, nome, local;
+
+        categoria = l.getCategoria();
+        nome = l.getNome();
+        local = l.getLocal();
+
+        String query = "INSERT INTO Loja(categoria, nome, local) values "
+                + "('" + categoria + "', '" + nome + "', '" + local + "');";
+
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
+
+    public void insereProduto(Produto p) throws ClassNotFoundException, SQLException {
+        String nome, marca, tipo;
+        double preco;
+
+        nome = p.getNome();
+        marca = p.getMarca();
+        tipo = p.getTipo();
+        preco = p.getPreco();
+
+        String query = "INSERT INTO Produto(nome, marca, tipo, preco) values "
+                + "('" + nome + "', '" + marca + "', '" + tipo + "', '" + preco + "');";
+
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
+    
     public Funcionario selectFuncionarioById(int id) throws ClassNotFoundException, SQLException {
         String query;
         this.conn = ConexaoBD.getInstance();
@@ -63,21 +96,6 @@ public class BDController {
 
     public Funcionario selectFuncionarioByCpf(String cpf) {
         return null;
-    }
-    
-    public void insereLoja(Loja l) throws ClassNotFoundException, SQLException {
-        String categoria, nome, local;
-        
-        categoria = l.getCategoria();
-        nome = l.getNome();
-        local = l.getLocal();
-        
-        String query = "INSERT INTO Loja(categoria, nome, local) values "
-                + "('" + categoria + "', '" + nome + "', '" + local + "');";
-        
-        this.conn = ConexaoBD.getInstance();
-        conn.executaSQL(query);
-        conn.fechaConexao();
     }
     //</editor-fold>
 }
