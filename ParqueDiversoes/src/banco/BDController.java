@@ -7,7 +7,6 @@ package banco;
 
 import classes.Funcionario;
 import classes.Loja;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -18,7 +17,16 @@ import java.sql.SQLException;
 public class BDController {
 
     private ConexaoBD conn;
-
+    public static BDController instance;
+    
+    public static BDController getInstance() throws ClassNotFoundException, SQLException {
+        if (instance == null) {
+            instance = new BDController();
+        }
+        
+        return instance;
+    }
+    
     //<editor-fold defaultstate="collapsed" desc="Funcionario">
     public void insereFuncionario(Funcionario f) throws ClassNotFoundException, SQLException {
         String n, sn, cg, cpf, sx;
@@ -64,6 +72,10 @@ public class BDController {
     public Funcionario selectFuncionarioByCpf(String cpf) {
         return null;
     }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Loja">
+
     
     public void insereLoja(Loja l) throws ClassNotFoundException, SQLException {
         String categoria, nome, local;
@@ -80,4 +92,6 @@ public class BDController {
         conn.fechaConexao();
     }
     //</editor-fold>
+
+    
 }

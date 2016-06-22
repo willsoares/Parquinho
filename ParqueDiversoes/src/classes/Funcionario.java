@@ -6,6 +6,7 @@
 package classes;
 
 import banco.BDController;
+import java.sql.SQLException;
 
 /**
  *
@@ -21,8 +22,11 @@ public class Funcionario {
     private String cpf;
     private String sexo;
     private int idGerente;
+    private Funcionario gerente;
 
-    public Funcionario(int idFuncionario, String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) {
+    public Funcionario(int idFuncionario, String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) throws ClassNotFoundException, SQLException {
+        BDController cont = BDController.getInstance();
+        
         this.idFuncionario = idFuncionario;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -31,6 +35,9 @@ public class Funcionario {
         this.cpf = cpf;
         this.sexo = sexo;
         this.idGerente = idGerente;
+        
+        this.gerente = cont.selectFuncionarioById(idGerente);
+        
     }
 
     public Funcionario(String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) {
@@ -45,6 +52,7 @@ public class Funcionario {
 
     public Funcionario() {
     }
+    
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public int getIdFuncionario() {
@@ -110,6 +118,17 @@ public class Funcionario {
     public void setIdGerente(int idGerente) {
         this.idGerente = idGerente;
     }
+    
+    public Funcionario getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Funcionario gerente) {
+        this.gerente = gerente;
+    }
+    
     //</editor-fold>
+
+    
 
 }
