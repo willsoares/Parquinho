@@ -40,7 +40,7 @@ public class ConexaoBD {
         return preparedStatement.getResultSet();
     }
     
-    private void fechaConexao() throws SQLException {
+    public void fechaConexao() throws SQLException {
         this.connection.close();
     }
 

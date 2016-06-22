@@ -5,11 +5,14 @@
  */
 package classes;
 
+import banco.BDController;
+
 /**
  *
  * @author will
  */
 public class Funcionario {
+
     private int idFuncionario;
     private String nome;
     private String sobrenome;
@@ -17,10 +20,20 @@ public class Funcionario {
     private String cargo;
     private String cpf;
     private String sexo;
-    private Funcionario idGerente;
+    private int idGerente;
 
-    public Funcionario(int idFuncionario, String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, Funcionario idGerente) {
+    public Funcionario(int idFuncionario, String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) {
         this.idFuncionario = idFuncionario;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.salario = salario;
+        this.cargo = cargo;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.idGerente = idGerente;
+    }
+
+    public Funcionario(String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.salario = salario;
@@ -32,13 +45,7 @@ public class Funcionario {
 
     public Funcionario() {
     }
-    
-    public String insereFuncionario(Funcionario f){
-        
-        
-    }
 
-    
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public int getIdFuncionario() {
         return idFuncionario;
@@ -96,15 +103,13 @@ public class Funcionario {
         this.sexo = sexo;
     }
 
-    public Funcionario getIdGerente() {
+    public int getIdGerente() {
         return idGerente;
     }
 
-    public void setIdGerente(Funcionario idGerente) {
+    public void setIdGerente(int idGerente) {
         this.idGerente = idGerente;
     }
     //</editor-fold>
 
-    
-    
 }
