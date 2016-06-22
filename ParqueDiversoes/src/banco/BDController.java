@@ -5,11 +5,13 @@
  */
 package banco;
 
+import classes.Atracao;
 import classes.Funcionario;
 import classes.Loja;
 import classes.Produto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -80,7 +82,25 @@ public class BDController {
         conn.executaSQL(query);
         conn.fechaConexao();
     }
-    
+
+    public void insereAtracao(Atracao a) throws ClassNotFoundException, SQLException {
+        String nome, tipo;
+        Date dataManutencao;
+        int status;
+
+        nome = a.getNome();
+        tipo = a.getTipo();
+        dataManutencao = a.getDataManutencao();
+        status = a.getStatus();
+
+        String query = "INSERT INTO Atracao(nome, tipo, dataManutencao, status) values "
+                + "('" + nome + "', '" + tipo + "', '" + dataManutencao + "', '" + status + "');";
+
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
+
     public Funcionario selectFuncionarioById(int id) throws ClassNotFoundException, SQLException {
         String query;
         this.conn = ConexaoBD.getInstance();

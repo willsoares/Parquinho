@@ -74,6 +74,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton4.setText("Atração");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Produto");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +206,11 @@ public class Main extends javax.swing.JFrame {
         InsercaoProduto insercaoProduto = new InsercaoProduto();
         insercaoProduto.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        InsercaoAtracao insercaoAtracao = new InsercaoAtracao();
+        insercaoAtracao.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
