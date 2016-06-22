@@ -76,6 +76,11 @@ public class Main extends javax.swing.JFrame {
         jButton4.setText("Atração");
 
         jButton5.setText("Produto");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Atualizaçãoes:");
 
@@ -191,6 +196,11 @@ public class Main extends javax.swing.JFrame {
         InsercaoLoja insercaoLoja = new InsercaoLoja();
         insercaoLoja.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        InsercaoProduto insercaoProduto = new InsercaoProduto();
+        insercaoProduto.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
