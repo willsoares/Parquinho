@@ -35,6 +35,7 @@ public class BDController {
                 + "("+n+", "+sn+", "+sl+", "+cg+", "+sx+", "+idG+")";
         this.conn = ConexaoBD.getInstance();
         conn.executaSQL(query);
+        conn.fec
         
     }
     
