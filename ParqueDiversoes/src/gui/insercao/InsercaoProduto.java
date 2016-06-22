@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.insercao;
 
 import banco.BDController;
-import classes.Atracao;
-import java.sql.Date;
+import classes.Produto;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,15 +15,16 @@ import java.util.logging.Logger;
  *
  * @author Hugo
  */
-public class InsercaoAtracao extends javax.swing.JFrame {
+public class InsercaoProduto extends javax.swing.JFrame {
 
     /**
-     * Creates new form InsercaoAtracao
+     * Creates new form InsercaoProduto
      */
-    public InsercaoAtracao() {
+    public InsercaoProduto() {
         initComponents();
-        
-        setTitle("Insira uma nova Atração");
+
+        setTitle("Insira um novo Produto");
+
     }
 
     /**
@@ -51,19 +51,11 @@ public class InsercaoAtracao extends javax.swing.JFrame {
 
         jLabel1.setText("NOME:");
 
-        jLabel2.setText("TIPO:");
+        jLabel2.setText("MARCA:");
 
-        jLabel3.setText("DATA DE MANUTENÇÃO:");
+        jLabel3.setText("TIPO:");
 
-        jLabel4.setText("STATUS:");
-
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField1");
-
-        jTextField3.setText("jTextField1");
-
-        jTextField4.setText("jTextField1");
+        jLabel4.setText("PREÇO:");
 
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,23 +84,24 @@ public class InsercaoAtracao extends javax.swing.JFrame {
                         .addComponent(jTextField1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(23, 23, 23)
-                        .addComponent(jTextField2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(9, 9, 9)
-                        .addComponent(jTextField4))
+                        .addGap(13, 13, 13)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)))
+                        .addGap(23, 23, 23)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addComponent(jButton1)
-                .addGap(83, 83, 83))
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,11 +122,11 @@ public class InsercaoAtracao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,14 +138,14 @@ public class InsercaoAtracao extends javax.swing.JFrame {
 
             BDController bDController = new BDController();
 
-            Atracao atracao = new Atracao(
+            Produto produto = new Produto(
                     jTextField1.getText().toString(),
                     jTextField2.getText().toString(),
-                    Date.valueOf(jTextField3.getText().toString()),
-                    Integer.parseInt(jTextField4.getText().toString()));
+                    jTextField3.getText().toString(),
+                    Double.parseDouble(jTextField4.getText().toString()));
 
             try {
-                bDController.insereAtracao(atracao);
+                bDController.insereProduto(produto);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsercaoLoja.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -166,6 +159,7 @@ public class InsercaoAtracao extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

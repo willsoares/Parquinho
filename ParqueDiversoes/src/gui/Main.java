@@ -5,10 +5,15 @@
  */
 package gui;
 
+import gui.insercao.InsercaoProduto;
+import gui.insercao.InsercaoFuncionario;
+import gui.insercao.InsercaoLoja;
+import gui.insercao.InsercaoAtracao;
 import banco.ConexaoBD;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,7 +29,8 @@ public class Main extends javax.swing.JFrame {
     public Main() throws ClassNotFoundException, SQLException {
         initComponents();
 
-        setTitle("* Hopi Carrero *");        
+        setTitle("* Hopi Carrero *");    
+        
     }
 
     /**
@@ -90,6 +96,11 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setText("Atualizaçãoes:");
 
         jButton6.setText("Funcionário");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Loja");
 
@@ -211,6 +222,23 @@ public class Main extends javax.swing.JFrame {
         InsercaoAtracao insercaoAtracao = new InsercaoAtracao();
         insercaoAtracao.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        String s = (String)JOptionPane.showInputDialog(
+                    this,
+                    "Insira o id do funcionário:\n",
+                    "Customized Dialog",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "ID Usuário");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            System.out.println(s);
+            return;
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
