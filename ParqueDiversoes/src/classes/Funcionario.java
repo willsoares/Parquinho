@@ -24,6 +24,8 @@ public class Funcionario {
     private int idGerente;
     private Funcionario gerente;
 
+    
+    //<editor-fold defaultstate="collapsed" desc="Construtores">
     public Funcionario(int idFuncionario, String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) throws ClassNotFoundException, SQLException {
         BDController cont = BDController.getInstance();
         
@@ -40,7 +42,9 @@ public class Funcionario {
         
     }
 
-    public Funcionario(String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) {
+    public Funcionario(String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) throws ClassNotFoundException, SQLException {
+        BDController cont = BDController.getInstance();
+        
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.salario = salario;
@@ -48,11 +52,21 @@ public class Funcionario {
         this.cpf = cpf;
         this.sexo = sexo;
         this.idGerente = idGerente;
+        
+        this.gerente = cont.selectFuncionarioById(idGerente);
     }
+
+    public Funcionario(int idGerente) throws ClassNotFoundException, SQLException {
+        BDController cont = BDController.getInstance();
+
+        this.idGerente = idGerente;
+        this.gerente = cont.selectFuncionarioById(idGerente);
+    }
+    
 
     public Funcionario() {
     }
-    
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public int getIdFuncionario() {
@@ -127,7 +141,22 @@ public class Funcionario {
         this.gerente = gerente;
     }
     
+    public String getNomeCompleto(){
+        return this.nome+" "+this.sobrenome;
+    }
+    
     //</editor-fold>
+    
+    @Override
+    public String toString(){
+        String s ="\nFuncionario "+idFuncionario+"\n"
+                + "Nome: "+getNomeCompleto()+"\n"
+                + "CPF: "+cpf+"\n"
+                + "Salario: R$: "+salario+"\t|\tCargo: "+cargo+"\n"
+                + "Sexo: "+sexo+"\n"
+                + "Gerente: "+gerente.getNomeCompleto()+"|"+gerente.getIdFuncionario();
+        return s;
+    }
 
     
 

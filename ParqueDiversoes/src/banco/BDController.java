@@ -10,6 +10,7 @@ import classes.Loja;
 import classes.Produto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,6 +30,7 @@ public class BDController {
     }
     
     //<editor-fold defaultstate="collapsed" desc="Funcionario">
+    
     public void insereFuncionario(Funcionario f) throws ClassNotFoundException, SQLException {
         String n, sn, cg, cpf, sx;
         int idG;
@@ -48,7 +50,83 @@ public class BDController {
         conn.fechaConexao();
 
     }
+    
+    public Funcionario selectFuncionarioById(int id) throws ClassNotFoundException, SQLException {
+        String query;
+        this.conn = ConexaoBD.getInstance();
 
+        query = "SELECT * FROM Funcionario WHERE idFuncionario = " + id;
+        ResultSet r = conn.executaSQL(query);
+
+        Funcionario f = new Funcionario(r.getInt("idGerente"));
+        f.setIdFuncionario(r.getInt("idFuncionario"));
+        f.setNome(r.getString("nome"));
+        f.setSobrenome(r.getString("sobrenome"));
+        f.setCargo(r.getString("cargo"));
+        f.setSalario(r.getInt("salario"));
+        f.setSexo(r.getString("sexo"));
+        f.setCpf(r.getString("cpf"));
+
+        conn.fechaConexao();
+
+        return f;
+    }
+
+    public Funcionario selectFuncionarioByCpf(String cpf) throws ClassNotFoundException, SQLException {
+        String query;
+        this.conn = ConexaoBD.getInstance();
+
+        query = "SELECT * FROM Funcionario WHERE idFuncionario like " + cpf;
+        ResultSet r = conn.executaSQL(query);
+
+        Funcionario f = new Funcionario(r.getInt("idGerente"));
+        f.setIdFuncionario(r.getInt("idFuncionario"));
+        f.setNome(r.getString("nome"));
+        f.setSobrenome(r.getString("sobrenome"));
+        f.setCargo(r.getString("cargo"));
+        f.setSalario(r.getInt("salario"));
+        f.setSexo(r.getString("sexo"));
+        f.setCpf(r.getString("cpf"));
+
+        conn.fechaConexao();
+
+        return f;
+    }
+    
+    public void removeFuncionario(int id) throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+        
+        String query = "DELETE FROM Funcionario WHERE idFuncionario = '"+id+"'";
+        this.conn.executaSQL(query);
+        this.conn.fechaConexao();
+    }
+    
+    public ArrayList selectAllFuncionario() throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+
+        ArrayList<Funcionario> funcionarios = new ArrayList();
+        String query = "SELECT * FROM Funcionario";
+        ResultSet r = this.conn.executaSQL(query);
+        
+        while(!r.isLast()){
+            Funcionario f = new Funcionario(r.getInt("idGerente"));
+            f.setIdFuncionario(r.getInt("idFuncionario"));
+            f.setNome(r.getString("nome"));
+            f.setSobrenome(r.getString("sobrenome"));
+            f.setCargo(r.getString("cargo"));
+            f.setSalario(r.getInt("salario"));
+            f.setSexo(r.getString("sexo"));
+            f.setCpf(r.getString("cpf"));
+            funcionarios.add(f);
+            r.next();
+        }
+        
+        return funcionarios;
+    }
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Loja">
     public void insereLoja(Loja l) throws ClassNotFoundException, SQLException {
         String categoria, nome, local;
 
@@ -80,37 +158,6 @@ public class BDController {
         conn.executaSQL(query);
         conn.fechaConexao();
     }
-    
-    public Funcionario selectFuncionarioById(int id) throws ClassNotFoundException, SQLException {
-        String query;
-        this.conn = ConexaoBD.getInstance();
-
-        query = "SELECT * FROM Funcionario WHERE idFuncionario = " + id;
-        ResultSet r = conn.executaSQL(query);
-
-        Funcionario f = new Funcionario();
-        f.setIdFuncionario(r.getInt("idFuncionario"));
-        f.setNome(r.getString("nome"));
-        f.setSobrenome(r.getString("sobrenome"));
-        f.setCargo(r.getString("cargo"));
-        f.setSalario(r.getInt("salario"));
-        f.setSexo(r.getString("sexo"));
-        f.setIdGerente(r.getInt("idGerente"));
-
-        conn.fechaConexao();
-
-        return f;
-    }
-
-    public Funcionario selectFuncionarioByCpf(String cpf) {
-        return null;
-    }
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Loja">
-
-    
-
     //</editor-fold>
 
     
