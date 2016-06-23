@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.insercao;
+package gui.remocao;
 
 import banco.BDController;
 import java.sql.SQLException;
@@ -14,15 +14,16 @@ import java.util.logging.Logger;
  *
  * @author Hugo
  */
-public class InsercaoFuncionarioAtracao extends javax.swing.JFrame {
-
+public class RemocaoFuncionarioLoja extends javax.swing.JFrame {
     private BDController bDController;
 
     /**
-     * Creates new form InsercaoFuncionarioAtracao
+     * Creates new form RemocaoFuncionarioLoja
      */
-    public InsercaoFuncionarioAtracao() {
+    public RemocaoFuncionarioLoja() {
         initComponents();
+        
+        setTitle("Remover funcionario de uma loja");
     }
 
     /**
@@ -45,7 +46,7 @@ public class InsercaoFuncionarioAtracao extends javax.swing.JFrame {
 
         jLabel1.setText("ID FUNCIONARIO:");
 
-        jLabel2.setText("ID ATRAÇÃO:");
+        jLabel2.setText("ID LOJA:");
 
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +67,7 @@ public class InsercaoFuncionarioAtracao extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
@@ -76,12 +77,12 @@ public class InsercaoFuncionarioAtracao extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -89,11 +90,11 @@ public class InsercaoFuncionarioAtracao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -105,12 +106,12 @@ public class InsercaoFuncionarioAtracao extends javax.swing.JFrame {
             this.bDController = new BDController();
 
             try {
-                bDController.adicionaFuncionarioAtracao(Integer.valueOf(jTextField1.getText().toString()),
+                bDController.removeFuncionarioLoja(Integer.valueOf(jTextField1.getText().toString()),
                         Integer.valueOf(jTextField2.getText().toString()));
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(InsercaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RemocaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(InsercaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RemocaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             this.dispose();
