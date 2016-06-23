@@ -185,16 +185,17 @@ public class InsercaoFuncionario extends javax.swing.JFrame {
             BDController bDController = new BDController();
 
             Funcionario funcionario;
+
+            funcionario = new Funcionario(
+                    jTextField1.getText().toString(),
+                    jTextField2.getText().toString(),
+                    Double.valueOf(jTextField3.getText().toString()),
+                    jTextField4.getText().toString(),
+                    jTextField5.getText().toString(),
+                    jTextField6.getText().toString(),
+                    Integer.valueOf(jTextField7.getText().toString()));
+
             try {
-                funcionario = new Funcionario(
-                        jTextField1.getText().toString(),
-                        jTextField2.getText().toString(),
-                        Double.valueOf(jTextField3.getText().toString()),
-                        jTextField4.getText().toString(),
-                        jTextField5.getText().toString(),
-                        jTextField6.getText().toString(),
-                        Integer.valueOf(jTextField7.getText().toString()));
-                
                 bDController.insereFuncionario(funcionario);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsercaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
@@ -202,7 +203,7 @@ public class InsercaoFuncionario extends javax.swing.JFrame {
                 Logger.getLogger(InsercaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            this.dispose();            
+            this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

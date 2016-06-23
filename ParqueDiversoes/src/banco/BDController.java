@@ -61,12 +61,14 @@ public class BDController {
         ResultSet r = conn.executaSQL(query);
         r.next();
 
+        r.next();
+        
         Funcionario f = new Funcionario();
-        f.setIdFuncionario(r.getInt("idFuncionario"));
+        f.setIdFuncionario(Integer.parseInt(r.getString("idFuncionario")));
         f.setNome(r.getString("nome"));
         f.setSobrenome(r.getString("sobrenome"));
         f.setCargo(r.getString("cargo"));
-        f.setSalario(r.getInt("salario"));
+        f.setSalario(r.getDouble("salario"));
         f.setSexo(r.getString("sexo"));
         f.setCpf(r.getString("cpf"));
         f.setIdGerente(r.getInt("idGerente"));

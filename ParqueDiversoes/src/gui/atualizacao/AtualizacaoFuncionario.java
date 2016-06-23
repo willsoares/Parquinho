@@ -8,6 +8,8 @@ package gui.atualizacao;
 import banco.BDController;
 import classes.Funcionario;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,14 +17,17 @@ import java.sql.SQLException;
  */
 public class AtualizacaoFuncionario extends javax.swing.JFrame {
 
+    BDController bDController;
+    Funcionario funcionario;
+
     /**
      * Creates new form AtualizacaoFuncionario
      */
     public AtualizacaoFuncionario(int idFuncionario) throws ClassNotFoundException, SQLException {
         initComponents();
-        
+
         setTitle("Atualize um Funcionário");
-        
+
         preencheCampos(idFuncionario);
     }
 
@@ -49,6 +54,8 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,11 +85,30 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
 
         jLabel4.setText("CARGO:");
 
+        jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(81, 81, 81)
+                .addComponent(jButton1)
+                .addGap(85, 85, 85))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -119,7 +145,12 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(306, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(26, 26, 26))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(26, 26, 26)
@@ -150,17 +181,25 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel7)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(26, Short.MAX_VALUE)))
+                    .addContainerGap(81, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void preencheCampos(int id) throws ClassNotFoundException, SQLException {
-        BDController bDController = new BDController();
-        Funcionario funcionario = bDController.selectFuncionarioById(id);
+        this.bDController = new BDController();
+        this.funcionario = bDController.selectFuncionarioById(id);
+        
+        jTextField1.setText(funcionario.getNome());
+        jTextField2.setText(funcionario.getSobrenome());
+        jTextField3.setText(String.valueOf(funcionario.getSalario()));
+        jTextField4.setText(funcionario.getCargo());
+        jTextField5.setText(funcionario.getCpf());
+        jTextField6.setText(funcionario.getSexo());
+        jTextField7.setText(String.valueOf(funcionario.getIdGerente()));
     }
-    
+
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -169,7 +208,39 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (jTextField1.getText().trim() != "" && jTextField2.getText().trim() != "" && jTextField3.getText().trim() != ""
+                && jTextField4.getText().trim() != "" && jTextField5.getText().trim() != "" && jTextField6.getText().trim() != ""
+                && jTextField7.getText().trim() != "") {
+            
+            this.funcionario = new Funcionario(
+                        jTextField1.getText().toString(),
+                        jTextField2.getText().toString(),
+                        Double.valueOf(jTextField3.getText().toString()),
+                        jTextField4.getText().toString(),
+                        jTextField5.getText().toString(),
+                        jTextField6.getText().toString(),
+                        Integer.valueOf(jTextField7.getText().toString()));
+            
+            try {
+                bDController.atualizaFuncionario(funcionario);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AtualizacaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AtualizacaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
