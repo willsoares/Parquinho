@@ -28,14 +28,14 @@ public class ConexaoBD {
         return instance;
     }
     
-    private ConexaoBD() throws ClassNotFoundException, SQLException {
+    public ConexaoBD() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         this.connection = (Connection) DriverManager.getConnection("jdbc:mysql://www2.bcc.unifal-mg.edu.br:3306/a14034", "a14034", "a14034");
     }
 
     public ResultSet executaSQL(String query) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.execute();
+        PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+        preparedStatement.execute(query);
         
         return preparedStatement.getResultSet();
     }
