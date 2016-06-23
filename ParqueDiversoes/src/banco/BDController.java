@@ -6,6 +6,7 @@
 package banco;
 
 import classes.Atracao;
+import classes.Estoque;
 import classes.Funcionario;
 import classes.Loja;
 import classes.Produto;
@@ -374,16 +375,56 @@ public class BDController {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Estoque">
-    public void adicionaEstoque(Loja l, Produto p, double q) throws ClassNotFoundException, SQLException{
-        int idLoja = l.getIdLoja();
-        int idProduto = p.getIdProduto();
-        
+    public void adicionaEstoque(int idLoja,  int idProduto, double q) throws ClassNotFoundException, SQLException{
         String query = "INSERT INTO Estoque(idLoja, idProduto, quantidade) values "
                 + "('" + idLoja + "', '" + idProduto + "', '" + q + "');";
         
         this.conn = ConexaoBD.getInstance();
         conn.executaSQL(query);
         conn.fechaConexao();
+    }
+    
+    public void atualizaEstoque(int idLoja,  int idProduto, double q) throws ClassNotFoundException, SQLException{
+        String query = "UPDATE Estoque SET "
+                + "quantidade = '" + q + "' "
+                + "WHERE idLoja = '" + idLoja + "' AND idProduto = '" + idProduto + "';";
+        
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
+    
+    public void removeEstoque(int idLoja,  int idProduto) throws ClassNotFoundException, SQLException{
+        String query = "DELETE FROM Funcionario WHERE idLoja = '" + idLoja + ""
+                + "' AND idProduto = '"+idProduto+"'; ";
+        
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
+    
+    public Estoque selectEstoque(int idLoja,  int idProduto) throws ClassNotFoundException, SQLException{
+        String query = "SELECT quantidade FROM Estoque WHERE idLoja = '"+idLoja+"' AND idProduto = '"+idProduto+"';";
+        this.conn = ConexaoBD.getInstance();
+        ResultSet r = conn.executaSQL(query);
+        conn.fechaConexao();
+        r.next();
+        Estoque e = new Estoque(idLoja, idProduto, r.getDouble("quantidade"));
+        return e;
+    }
+    
+    public ArrayList<Estoque> selectAllEstoque() throws ClassNotFoundException, SQLException{
+        String query = "SELECT * FROM Estoque";
+        this.conn = ConexaoBD.getInstance();
+        ResultSet r = conn.executaSQL(query);
+        conn.fechaConexao();
+        
+        ArrayList<Estoque> estoque = new ArrayList();
+        while(r.next()){
+            Estoque e = new Estoque(r.getInt("idLoja"), r.getInt("idProduto"), r.getDouble("quantidade"));
+            estoque.add(e);
+        }
+        return estoque;
     }
     
     //</editor-fold>
