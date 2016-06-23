@@ -5,6 +5,7 @@
  */
 package gui;
 
+import banco.BDController;
 import gui.insercao.InsercaoProduto;
 import gui.insercao.InsercaoFuncionario;
 import gui.insercao.InsercaoLoja;
@@ -131,12 +132,32 @@ public class Main extends javax.swing.JFrame {
         jLabel3.setText("Remoções:");
 
         jButton10.setText("Funcionário");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Loja");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("Atração");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setText("Produto");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -337,6 +358,98 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        String s = (String) JOptionPane.showInputDialog(
+                this,
+                "Insira o id do funcionário:\n",
+                "Customized Dialog",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ID Funcionário");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            BDController bDController = new BDController();
+            try {
+                bDController.removeFuncionario(Integer.valueOf(s));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        String s = (String) JOptionPane.showInputDialog(
+                this,
+                "Insira o id da loja:\n",
+                "Customized Dialog",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ID Loja");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            BDController bDController = new BDController();
+            try {
+                bDController.removeLoja(Integer.valueOf(s));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        String s = (String) JOptionPane.showInputDialog(
+                this,
+                "Insira o id da atração:\n",
+                "Customized Dialog",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ID Atralção");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            BDController bDController = new BDController();
+            try {
+                bDController.removeAtracao(Integer.valueOf(s));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        String s = (String) JOptionPane.showInputDialog(
+                this,
+                "Insira o id do produto:\n",
+                "Customized Dialog",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ID Produto");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            BDController bDController = new BDController();
+            try {
+                bDController.removeProduto(Integer.valueOf(s));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
