@@ -194,14 +194,14 @@ public class BDController {
     }
     
     public void atualizaLoja(Loja l) throws ClassNotFoundException, SQLException{
-        this.conn = ConexaoBD.getInstance();
         
         String query = "UPDATE Loja SET "
                 + "nome = '"+l.getNome()+"', "
                 + "categoria = '"+l.getCategoria()+"', "
-                + "local = '"+l.getLocal()+"', "
-                + " WHERE idFuncionario = '"+l.getIdLoja()+"'";
+                + "local = '"+l.getLocal()+"' "
+                + " WHERE idLoja = '"+l.getIdLoja()+"'";
         
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
         
