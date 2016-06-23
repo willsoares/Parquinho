@@ -41,7 +41,7 @@ public class BDController {
 
         String query = "INSERT INTO Funcionario (nome, sobrenome, salario, cargo, cpf, sexo, idGerente) values "
                 + "('" + n + "', '" + sn + "', '" + sl + "', '" + cg + "', '" + cpf + "', '" + sx + "', '" + idG + "');";
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         this.conn.executaSQL(query);
         this.conn.fechaConexao();
 
@@ -49,7 +49,7 @@ public class BDController {
 
     public Funcionario selectFuncionarioById(int id) throws ClassNotFoundException, SQLException {
         String query;
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         query = "SELECT * FROM Funcionario WHERE idFuncionario = " + id;
         ResultSet r = this.conn.executaSQL(query);
@@ -73,7 +73,7 @@ public class BDController {
 
     public Funcionario selectFuncionarioByCpf(String cpf) throws ClassNotFoundException, SQLException {
         String query;
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         query = "SELECT * FROM Funcionario WHERE idFuncionario like " + cpf;
         ResultSet r = this.conn.executaSQL(query);
@@ -103,7 +103,7 @@ public class BDController {
     }
 
     public ArrayList selectAllFuncionario() throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         ArrayList<Funcionario> funcionarios = new ArrayList();
         String query = "SELECT * FROM Funcionario";
@@ -111,7 +111,7 @@ public class BDController {
 
         r.next();
         
-        while (!r.isLast()) {
+        while (!r.isAfterLast()) {
             Funcionario f = new Funcionario();
             f.setIdFuncionario(r.getInt("idFuncionario"));
             f.setNome(r.getString("nome"));
@@ -166,26 +166,29 @@ public class BDController {
     }
 
     public ArrayList<Loja> selectAllLoja() throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         ArrayList<Loja> lojas = new ArrayList();
         String query = "SELECT * FROM Loja";
         ResultSet r = this.conn.executaSQL(query);
 
-        while (r.next()) {
+        r.next();
+        
+        while (!r.isAfterLast()) {
             Loja l = new Loja();
             l.setCategoria(r.getString("categoria"));
             l.setIdLoja(r.getInt("idLoja"));
             l.setLocal(r.getString("local"));
             l.setNome(r.getString("nome"));
             lojas.add(l);
+            r.next();
         }
         return lojas;
     }
 
     public Loja selectLoja(int id) throws ClassNotFoundException, SQLException {
         String query;
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         query = "SELECT * FROM Loja WHERE idLoja = " + id;
         ResultSet r = conn.executaSQL(query);
@@ -237,19 +240,21 @@ public class BDController {
         String query = "INSERT INTO Produto(nome, marca, tipo, preco) values "
                 + "('" + nome + "', '" + marca + "', '" + tipo + "', '" + preco + "');";
 
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
 
     public ArrayList<Produto> selectAllProduto() throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         ArrayList<Produto> produtos = new ArrayList();
         String query = "SELECT * FROM Produto";
         ResultSet r = this.conn.executaSQL(query);
 
-        while (r.next()) {
+        r.next();
+        
+        while (!r.isAfterLast()) {
             Produto p = new Produto();
             p.setIdProduto(r.getInt("idProduto"));
             p.setMarca(r.getString("marca"));
@@ -257,6 +262,7 @@ public class BDController {
             p.setPreco(r.getDouble("preco"));
             p.setTipo(r.getString("tipo"));
             produtos.add(p);
+            r.next();
         }
         conn.fechaConexao();
         return produtos;
@@ -264,7 +270,7 @@ public class BDController {
     }
 
     public Produto selectProduto(int id) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         String query = "SELECT * FROM Produto WHERE idProduto = '" + id + "';";
         ResultSet r = this.conn.executaSQL(query);
@@ -320,19 +326,21 @@ public class BDController {
         String query = "INSERT INTO Produto(nome, dataManutencao, tipo, status) values "
                 + "('" + nome + "', '" + date + "', '" + tipo + "', '" + status + "');";
 
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
 
     public ArrayList<Atracao> selectAllAtracao() throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         ArrayList<Atracao> atracoes = new ArrayList();
         String query = "SELECT * FROM Atracao";
         ResultSet r = this.conn.executaSQL(query);
 
-        while (r.next()) {
+        r.next();
+        
+        while (!r.isAfterLast()) {
             Atracao a = new Atracao();
             a.setIdAtracao(r.getInt("idAtracao"));
             a.setDataManutencao(r.getDate("dataManutencao"));
@@ -340,13 +348,14 @@ public class BDController {
             a.setStatus(r.getInt("status"));
             a.setTipo(r.getString("tipo"));
             atracoes.add(a);
+            r.next();
         }
         conn.fechaConexao();
         return atracoes;
     }
 
     public Atracao selectAtracao(int id) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         String query = "SELECT * FROM Atracao WHERE idAtracao = '" + id + "';";
         ResultSet r = this.conn.executaSQL(query);
@@ -392,7 +401,7 @@ public class BDController {
         String query = "INSERT INTO Loja_has_Funcionario(idLoja, idFuncionario, dataInicio) values "
                 + "('" + idLoja + "', '" + idFuncionario + "', '" + dataInicio + "');";
         
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
@@ -410,14 +419,14 @@ public class BDController {
                 + "dataInicio = '" + d + "' "
                 + "WHERE idLoja = '" + idLoja + "' AND idFuncionario = '" + idFuncionario + "';";
         
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
     
     public LojaHasFuncionario selectFuncionarioLoja(int idLoja,  int idFuncionario) throws ClassNotFoundException, SQLException{
         String query = "SELECT dataInicio FROM Loja_has_Funcionario WHERE idLoja = '"+idLoja+"' AND idFuncionario = '"+idFuncionario+"';";
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
         r.next();
@@ -427,13 +436,17 @@ public class BDController {
     
     public ArrayList<LojaHasFuncionario> selectAllFuncionarioLoja() throws ClassNotFoundException, SQLException{
         String query = "SELECT * FROM Loja_has_Funcionario;";
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
         ArrayList<LojaHasFuncionario> la = new ArrayList();
-        while(r.next()){
+        
+        r.next();
+        
+        while(!r.isAfterLast()){
             LojaHasFuncionario l = new LojaHasFuncionario(r.getInt("idLoja") ,r.getInt("idFuncionario"), r.getDate("dataInicio"));
             la.add(l);
+            r.next();
         }
         return la;
     }
@@ -447,7 +460,7 @@ public class BDController {
         String query = "INSERT INTO TrabalhaEm(idAtracao, idFuncionario, dataInicio) values "
                 + "('" + idAtracao + "', '" + idFuncionario + "', '" + dataInicio + "');";
         
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
@@ -465,14 +478,14 @@ public class BDController {
                 + "dataInicio = '" + d + "' "
                 + "WHERE idAtracao = '" + idAtracao + "' AND idFuncionario = '" + idFuncionario + "';";
         
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
     
     public AtracaoHasFuncionario selectFuncionarioAtracao(int idFuncionario, int idAtracao) throws ClassNotFoundException, SQLException{
         String query = "SELECT dataInicio FROM TrabalhaEm WHERE idAtracao = '"+idAtracao+"' AND idFuncionario = '"+idFuncionario+"';";
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
         r.next();
@@ -482,13 +495,17 @@ public class BDController {
     
     public ArrayList<AtracaoHasFuncionario> selectAllFuncionarioAtracao() throws ClassNotFoundException, SQLException{
         String query = "SELECT * FROM TrabalhaEm;";
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
         ArrayList<AtracaoHasFuncionario> la = new ArrayList();
-        while(r.next()){
+        
+        r.next();
+        
+        while(!r.isAfterLast()){
             AtracaoHasFuncionario l = new AtracaoHasFuncionario(r.getInt("idAtracao") ,r.getInt("idFuncionario"), r.getDate("dataInicio"));
             la.add(l);
+            r.next();
         }
         return la;
     }
@@ -500,7 +517,7 @@ public class BDController {
         String query = "INSERT INTO Estoque(idLoja, idProduto, quantidade) values "
                 + "('" + idLoja + "', '" + idProduto + "', '" + q + "');";
 
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
@@ -510,7 +527,7 @@ public class BDController {
                 + "quantidade = '" + q + "' "
                 + "WHERE idLoja = '" + idLoja + "' AND idProduto = '" + idProduto + "';";
 
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
@@ -526,7 +543,7 @@ public class BDController {
 
     public Estoque selectEstoque(int idLoja, int idProduto) throws ClassNotFoundException, SQLException {
         String query = "SELECT quantidade FROM Estoque WHERE idLoja = '" + idLoja + "' AND idProduto = '" + idProduto + "';";
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
         r.next();
@@ -536,14 +553,16 @@ public class BDController {
 
     public ArrayList<Estoque> selectAllEstoque() throws ClassNotFoundException, SQLException {
         String query = "SELECT * FROM Estoque";
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
 
         ArrayList<Estoque> estoque = new ArrayList();
-        while (r.next()) {
+        r.next();
+        while (!r.isAfterLast()) {
             Estoque e = new Estoque(r.getInt("idLoja"), r.getInt("idProduto"), r.getDouble("quantidade"));
             estoque.add(e);
+            r.next();
         }
         return estoque;
     }
@@ -556,41 +575,66 @@ public class BDController {
         
         this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
-        conn.fechaConexao();
-        String s = null;
-        while(r.next()){
-            s = r.toString();
+        
+        StringBuilder sb = new StringBuilder();
+        
+        r.next();
+        
+        while(!r.isAfterLast()){
+            sb.append(r.getString(1)).append(" ");
+            sb.append(r.getString(2)).append("  |  R$");
+            sb.append(r.getString(3)).append("  |  ");
+            sb.append(r.getString(4)).append("\n\n");
+            r.next();
         }
         
-        return s;
+        conn.fechaConexao();
+        return sb.toString();
     }
     
-    public String estoqueLoja() throws ClassNotFoundException, SQLException{
+    public String visaoEstoqueLoja() throws ClassNotFoundException, SQLException{
         String query = "SELECT * FROM estoque_da_loja;";
         
         this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
-        conn.fechaConexao();
-        String s = null;
-        while(r.next()){
-            s = r.toString();
+        
+        StringBuilder sb = new StringBuilder();
+        
+        r.next();
+        
+        while(!r.isAfterLast()){
+            sb.append(r.getString(1)).append("  |  ");
+            sb.append(r.getString(2)).append("  |  ");
+            sb.append(r.getString(3)).append("  |  ");
+            sb.append(r.getString(4)).append("\n\n");
+            r.next();
         }
         
-        return s;
+        conn.fechaConexao();
+        
+        return sb.toString();
     }
     
-    public String atracoesAtivas() throws ClassNotFoundException, SQLException{
+    public String visaoAtracoesAtivas() throws ClassNotFoundException, SQLException{
         String query = "SELECT * FROM atracoes_ativas;";
         
         this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
-        conn.fechaConexao();
-        String s = null;
-        while(r.next()){
-            s = r.toString();
+        
+        StringBuilder sb = new StringBuilder();
+        
+        r.next();
+        
+        while(!r.isAfterLast()){
+            sb.append(r.getString(1)).append("  |  ");
+            sb.append(r.getString(2)).append("  |  ");
+            sb.append(r.getString(3)).append("\n\n");
+            r.next();
         }
         
-        return s;
+        conn.fechaConexao();
+        
+        return sb.toString();
     }
     //</editor-fold>
 

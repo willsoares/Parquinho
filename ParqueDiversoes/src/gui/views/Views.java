@@ -3,32 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.selectAll;
+package gui.views;
 
 import banco.BDController;
-import classes.Funcionario;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
  * @author Hugo
  */
-public class SelectAllFuncionario extends javax.swing.JFrame {
+public class Views extends javax.swing.JFrame {
 
     private BDController bDController;
 
     /**
-     * Creates new form SelectAllFuncionario
+     * Creates new form Views
      */
-    public SelectAllFuncionario() throws ClassNotFoundException, SQLException {
+    public Views(int numView) throws ClassNotFoundException, SQLException {
         initComponents();
 
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        
-        setTitle("Select de Todos os Funcionários");
 
-        preencheCampo();
+        if (numView == 1) {
+            jLabel1.setText("Trabalha Em:");
+        } else {
+            if (numView == 2) {
+                jLabel1.setText("Estoque das Lojas:");
+            } else {
+                jLabel1.setText("Atrações Ativas:");
+            }
+        }
+
+        preencheCampo(numView);
+
     }
 
     /**
@@ -50,7 +57,7 @@ public class SelectAllFuncionario extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLabel1.setText("Funcionários:");
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,18 +65,18 @@ public class SelectAllFuncionario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(jLabel1)
-                .addContainerGap(172, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -78,18 +85,21 @@ public class SelectAllFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void preencheCampo() throws ClassNotFoundException, SQLException {
+    private void preencheCampo(int numView) throws ClassNotFoundException, SQLException {
         this.bDController = new BDController();
+        String s;
 
-        ArrayList<Funcionario> funcionarios = bDController.selectAllFuncionario();
-
-        StringBuilder sb = new StringBuilder();
-        
-        for (Funcionario f : funcionarios) {
-            sb.append(f.toString());
+        if (numView == 1) {
+            s = bDController.visaoTrabalhaEm();
+        } else {
+            if (numView == 2) {
+                s = bDController.visaoEstoqueLoja();
+            } else {
+                s = bDController.visaoAtracoesAtivas();
+            }
         }
-        
-        jTextArea1.setText(sb.toString());
+
+        jTextArea1.setText(s);
 
     }
 

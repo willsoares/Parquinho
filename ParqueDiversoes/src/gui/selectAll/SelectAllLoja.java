@@ -86,7 +86,7 @@ public class SelectAllLoja extends javax.swing.JFrame {
         StringBuilder sb = new StringBuilder();
 
         for (Loja l : lojas) {
-            sb.append(sb).append(l.toString());
+            sb.append(l.toString());
         }
 
         jTextArea1.setText(sb.toString());
