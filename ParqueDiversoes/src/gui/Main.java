@@ -237,6 +237,7 @@ public class Main extends javax.swing.JFrame {
         //If a string was returned, say so.
         if ((s != null) && (s.length() > 0)) {
             AtualizacaoFuncionario atualizacaoFuncionario;
+            
             try {
                 atualizacaoFuncionario = new AtualizacaoFuncionario(Integer.parseInt(s));
                 atualizacaoFuncionario.setVisible(true);

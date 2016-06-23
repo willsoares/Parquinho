@@ -60,12 +60,14 @@ public class BDController {
         query = "SELECT * FROM Funcionario WHERE idFuncionario = " + id;
         ResultSet r = conn.executaSQL(query);
 
+        r.next();
+        
         Funcionario f = new Funcionario();
-        f.setIdFuncionario(r.getInt("idFuncionario"));
+        f.setIdFuncionario(Integer.parseInt(r.getString("idFuncionario")));
         f.setNome(r.getString("nome"));
         f.setSobrenome(r.getString("sobrenome"));
         f.setCargo(r.getString("cargo"));
-        f.setSalario(r.getInt("salario"));
+        f.setSalario(r.getDouble("salario"));
         f.setSexo(r.getString("sexo"));
         f.setCpf(r.getString("cpf"));
 
