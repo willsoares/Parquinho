@@ -153,7 +153,7 @@ public class BDController {
         String query = "INSERT INTO Loja(categoria, nome, local) values "
                 + "('" + categoria + "', '" + nome + "', '" + local + "');";
 
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
@@ -195,14 +195,14 @@ public class BDController {
     }
     
     public void atualizaLoja(Loja l) throws ClassNotFoundException, SQLException{
-        this.conn = ConexaoBD.getInstance();
         
         String query = "UPDATE Loja SET "
                 + "nome = '"+l.getNome()+"', "
                 + "categoria = '"+l.getCategoria()+"', "
-                + "local = '"+l.getLocal()+"', "
-                + " WHERE idFuncionario = '"+l.getIdLoja()+"'";
+                + "local = '"+l.getLocal()+"' "
+                + " WHERE idLoja = '"+l.getIdLoja()+"'";
         
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
         
@@ -266,7 +266,6 @@ public class BDController {
     }
     
     public void atualizaProduto(Produto p) throws ClassNotFoundException, SQLException{
-        this.conn = ConexaoBD.getInstance();
         
         String query = "UPDATE Produto SET "
                 + "nome = '"+p.getNome()+"', "
@@ -275,6 +274,7 @@ public class BDController {
                 + "tipo = '"+p.getTipo()+"', "
                 + " WHERE idProduto = '"+p.getIdProduto()+"'";
         
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
         
