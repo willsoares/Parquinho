@@ -11,6 +11,7 @@ import classes.Loja;
 import classes.Produto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -340,22 +341,51 @@ public class BDController {
     }
 
     public void atualizaAtracao(Atracao a) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
-
         String query = "UPDATE Produto SET "
                 + "nome = '"+a.getNome()+"', "
                 + "tipo = '"+a.getTipo()+"', "
                 + "dataManutencao = '"+a.getDataManutencao()+"', "
                 + "status = '"+a.getTipo()+"' "
                 + "WHERE idAtracao = '"+a.getIdAtracao()+"'";
-
+        
+        this.conn = ConexaoBD.getInstance();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Funcionario_Loja">
+    public void adicionaFuncionarioLoja(Funcionario f, Loja l) throws ClassNotFoundException, SQLException{
+        int idLoja = l.getIdLoja();
+        int idFuncionario = f.getIdFuncionario();
+        Date dataInicio = Date.from(Instant.now());
+        
+        String query = "INSERT INTO Loja_has_Funcionario(idLoja, idFuncionario, dataInicio) values "
+                + "('" + idLoja + "', '" + idFuncionario + "', '" + dataInicio + "');";
+        
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
     
-    //<editor-fold>
+    
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Estoque">
+    public void adicionaEstoque(Loja l, Produto p, double q) throws ClassNotFoundException, SQLException{
+        int idLoja = l.getIdLoja();
+        int idProduto = p.getIdProduto();
+        
+        String query = "INSERT INTO Estoque(idLoja, idProduto, quantidade) values "
+                + "('" + idLoja + "', '" + idProduto + "', '" + q + "');";
+        
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
+    
+    //</editor-fold>
+
     
 }
