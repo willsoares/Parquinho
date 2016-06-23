@@ -17,6 +17,9 @@ public class Venda {
     private int idLoja;
     private ArrayList<ItemVenda> itensVenda;
 
+    
+    
+    
     @Override
     public String toString() {
         return "Venda{" + "idVenda=" + idVenda + ", idFuncionario=" + idFuncionario + ", idLoja=" + idLoja + ", itensVenda=" + itensVenda + '}';
