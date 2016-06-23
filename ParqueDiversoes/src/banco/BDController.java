@@ -21,18 +21,8 @@ import java.util.Date;
 public class BDController {
 
     private ConexaoBD conn;
-    public static BDController instance;
-    
-    public static BDController getInstance() throws ClassNotFoundException, SQLException {
-        if (instance == null) {
-            instance = new BDController();
-        }
-        
-        return instance;
-    }
-    
+
     //<editor-fold defaultstate="collapsed" desc="Funcionario">
-    
     public void insereFuncionario(Funcionario f) throws ClassNotFoundException, SQLException {
         String n, sn, cg, cpf, sx;
         int idG;
@@ -48,21 +38,20 @@ public class BDController {
         String query = "INSERT INTO Funcionario (nome, sobrenome, salario, cargo, cpf, sexo, idGerente) values "
                 + "('" + n + "', '" + sn + "', '" + sl + "', '" + cg + "', '" + cpf + "', '" + sx + "', '" + idG + "');";
         this.conn = ConexaoBD.getInstance();
-        conn.executaSQL(query);
-        conn.fechaConexao();
+        this.conn.executaSQL(query);
+        this.conn.fechaConexao();
 
     }
-    
+
     public Funcionario selectFuncionarioById(int id) throws ClassNotFoundException, SQLException {
         String query;
         this.conn = ConexaoBD.getInstance();
 
         query = "SELECT * FROM Funcionario WHERE idFuncionario = " + id;
-        ResultSet r = conn.executaSQL(query);
-        r.next();
+        ResultSet r = this.conn.executaSQL(query);
 
         r.next();
-        
+
         Funcionario f = new Funcionario();
         f.setIdFuncionario(Integer.parseInt(r.getString("idFuncionario")));
         f.setNome(r.getString("nome"));
@@ -73,7 +62,7 @@ public class BDController {
         f.setCpf(r.getString("cpf"));
         f.setIdGerente(r.getInt("idGerente"));
 
-        conn.fechaConexao();
+        this.conn.fechaConexao();
 
         return f;
     }
@@ -83,9 +72,11 @@ public class BDController {
         this.conn = ConexaoBD.getInstance();
 
         query = "SELECT * FROM Funcionario WHERE idFuncionario like " + cpf;
-        ResultSet r = conn.executaSQL(query);
+        ResultSet r = this.conn.executaSQL(query);
+        this.conn.fechaConexao();
+
         r.next();
-        
+
         Funcionario f = new Funcionario();
         f.setIdFuncionario(r.getInt("idFuncionario"));
         f.setNome(r.getString("nome"));
@@ -96,28 +87,25 @@ public class BDController {
         f.setCpf(r.getString("cpf"));
         f.setIdGerente(r.getInt("idGerente"));
 
-
-        conn.fechaConexao();
-
         return f;
     }
-    
-    public void removeFuncionario(int id) throws ClassNotFoundException, SQLException{
+
+    public void removeFuncionario(int id) throws ClassNotFoundException, SQLException {
         this.conn = ConexaoBD.getInstance();
-        
-        String query = "DELETE FROM Funcionario WHERE idFuncionario = '"+id+"'";
+
+        String query = "DELETE FROM Funcionario WHERE idFuncionario = '" + id + "'";
         this.conn.executaSQL(query);
         this.conn.fechaConexao();
     }
-    
-    public ArrayList selectAllFuncionario() throws ClassNotFoundException, SQLException{
+
+    public ArrayList selectAllFuncionario() throws ClassNotFoundException, SQLException {
         this.conn = ConexaoBD.getInstance();
 
         ArrayList<Funcionario> funcionarios = new ArrayList();
         String query = "SELECT * FROM Funcionario";
         ResultSet r = this.conn.executaSQL(query);
-        
-        while(r.next()){
+
+        while (r.next()) {
             Funcionario f = new Funcionario();
             f.setIdFuncionario(r.getInt("idFuncionario"));
             f.setNome(r.getString("nome"));
@@ -129,29 +117,30 @@ public class BDController {
             f.setIdGerente(r.getInt("idGerente"));
             funcionarios.add(f);
         }
-        
+
+        this.conn.fechaConexao();
+
         return funcionarios;
     }
-    
-    public void atualizaFuncionario(Funcionario f) throws ClassNotFoundException, SQLException{
-        this.conn = ConexaoBD.getInstance();
-        
+
+    public void atualizaFuncionario(Funcionario f) throws ClassNotFoundException, SQLException {
+
         String query = "UPDATE Funcionario SET "
-                + "nome = '"+f.getNome()+"', "
-                + "sobrenome = '"+f.getSobrenome()+"', "
-                + "cargo = '"+f.getCargo()+"', "
-                + "salario = '"+f.getSalario()+"', "
-                + "cpf = '"+f.getCpf()+"', "
-                + "idGerente = '"+f.getIdGerente()+"', "
-                + "sexo = '"+f.getSexo()+"', "
-                + " WHERE idFuncionario = '"+f.getIdFuncionario()+"'";
-        
-        conn.executaSQL(query);
-        conn.fechaConexao();
+                + "nome = '" + f.getNome() + "', "
+                + "sobrenome = '" + f.getSobrenome() + "', "
+                + "cargo = '" + f.getCargo() + "', "
+                + "salario = '" + f.getSalario() + "', "
+                + "cpf = '" + f.getCpf() + "', "
+                + "idGerente = '" + f.getIdGerente() + "', "
+                + "sexo = '" + f.getSexo() + "' "
+                + "WHERE idFuncionario = '" + f.getIdFuncionario() + "'";
+
+        this.conn = new ConexaoBD();
+        this.conn.executaSQL(query);
+        this.conn.fechaConexao();
     }
-    
+
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="Loja">
     public void insereLoja(Loja l) throws ClassNotFoundException, SQLException {
         String categoria, nome, local;
@@ -167,15 +156,15 @@ public class BDController {
         conn.executaSQL(query);
         conn.fechaConexao();
     }
-    
-    public ArrayList<Loja> selectAllLoja() throws ClassNotFoundException, SQLException{
+
+    public ArrayList<Loja> selectAllLoja() throws ClassNotFoundException, SQLException {
         this.conn = ConexaoBD.getInstance();
 
         ArrayList<Loja> lojas = new ArrayList();
         String query = "SELECT * FROM Loja";
         ResultSet r = this.conn.executaSQL(query);
-        
-        while(r.next()){
+
+        while (r.next()) {
             Loja l = new Loja();
             l.setCategoria(r.getString("categoria"));
             l.setIdLoja(r.getInt("idLoja"));
@@ -201,7 +190,6 @@ public class BDController {
             l.setNome(r.getString("nome"));
 
         conn.fechaConexao();
-
         return l;
     }
     
@@ -287,9 +275,8 @@ public class BDController {
         
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="Atração">
-    
     public void insereAtracao(Atracao a) throws ClassNotFoundException, SQLException {
         String nome, tipo;
         Date dataManutencao;

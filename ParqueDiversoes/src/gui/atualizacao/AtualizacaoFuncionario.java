@@ -17,7 +17,6 @@ import java.util.logging.Logger;
  */
 public class AtualizacaoFuncionario extends javax.swing.JFrame {
 
-    BDController bDController;
     Funcionario funcionario;
 
     /**
@@ -188,9 +187,10 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void preencheCampos(int id) throws ClassNotFoundException, SQLException {
-        this.bDController = new BDController();
+        BDController bDController = new BDController();
         this.funcionario = bDController.selectFuncionarioById(id);
-        
+        bDController = null;
+
         jTextField1.setText(funcionario.getNome());
         jTextField2.setText(funcionario.getSobrenome());
         jTextField3.setText(String.valueOf(funcionario.getSalario()));
@@ -216,24 +216,25 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
         if (jTextField1.getText().trim() != "" && jTextField2.getText().trim() != "" && jTextField3.getText().trim() != ""
                 && jTextField4.getText().trim() != "" && jTextField5.getText().trim() != "" && jTextField6.getText().trim() != ""
                 && jTextField7.getText().trim() != "") {
-            
-            this.funcionario = new Funcionario(
-                        jTextField1.getText().toString(),
-                        jTextField2.getText().toString(),
-                        Double.valueOf(jTextField3.getText().toString()),
-                        jTextField4.getText().toString(),
-                        jTextField5.getText().toString(),
-                        jTextField6.getText().toString(),
-                        Integer.valueOf(jTextField7.getText().toString()));
-            
+
+            this.funcionario.setNome(jTextField1.getText().toString());
+            this.funcionario.setSobrenome(jTextField2.getText().toString());
+            this.funcionario.setSalario(Double.valueOf(jTextField3.getText().toString()));
+            this.funcionario.setCargo(jTextField4.getText().toString());
+            this.funcionario.setCpf(jTextField5.getText().toString());
+            this.funcionario.setSexo(jTextField6.getText().toString());
+            this.funcionario.setIdGerente(Integer.valueOf(jTextField7.getText().toString()));
+
             try {
+                BDController bDController = new BDController();
                 bDController.atualizaFuncionario(funcionario);
+                bDController = null;
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AtualizacaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(AtualizacaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
