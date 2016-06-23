@@ -261,7 +261,6 @@ public class BDController {
     }
     
     public void atualizaProduto(Produto p) throws ClassNotFoundException, SQLException{
-        this.conn = ConexaoBD.getInstance();
         
         String query = "UPDATE Produto SET "
                 + "nome = '"+p.getNome()+"', "
@@ -270,6 +269,7 @@ public class BDController {
                 + "tipo = '"+p.getTipo()+"', "
                 + " WHERE idFuncionario = '"+p.getIdProduto()+"'";
         
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
         
