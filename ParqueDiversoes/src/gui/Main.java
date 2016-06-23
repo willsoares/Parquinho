@@ -16,6 +16,7 @@ import gui.atualizacao.AtualizacaoFuncionario;
 import gui.atualizacao.AtualizacaoLoja;
 import gui.atualizacao.AtualizacaoProduto;
 import gui.insercao.InsercaoFuncionarioLoja;
+import gui.remocao.RemocaoFuncionarioAtracao;
 import gui.remocao.RemocaoFuncionarioLoja;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -182,6 +183,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton17.setText("Remover Funcionário da Atração");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,8 +226,8 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton15)
                 .addGap(40, 40, 40))
@@ -501,6 +507,11 @@ public class Main extends javax.swing.JFrame {
         RemocaoFuncionarioLoja remocaoFuncionarioLoja = new RemocaoFuncionarioLoja();
         remocaoFuncionarioLoja.setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        RemocaoFuncionarioAtracao remocaoFuncionarioAtracao = new RemocaoFuncionarioAtracao();
+        remocaoFuncionarioAtracao.setVisible(true);
+    }//GEN-LAST:event_jButton17ActionPerformed
 
     /**
      * @param args the command line arguments
