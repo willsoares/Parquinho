@@ -272,9 +272,9 @@ public class BDController {
                 + "marca = '" + p.getMarca() + "', "
                 + "preco = '" + p.getPreco() + "', "
                 + "tipo = '" + p.getTipo() + "'"
-                + " WHERE idProduto = '" 
+                + " WHERE idProduto = '"
                 + p.getIdProduto() + "'";
-        
+
         this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
@@ -324,7 +324,7 @@ public class BDController {
     public Atracao selectAtracao(int id) throws ClassNotFoundException, SQLException {
         this.conn = ConexaoBD.getInstance();
 
-        String query = "SELECT * FROM Atracao WHERE idAtracao = "+ id + "';";
+        String query = "SELECT * FROM Atracao WHERE idAtracao = '" + id + "';";
         ResultSet r = this.conn.executaSQL(query);
         r.next();
 
@@ -340,22 +340,20 @@ public class BDController {
     }
 
     public void atualizaAtracao(Atracao a) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
 
-        String query = "UPDATE Produto SET "
-                + "nome = '"+a.getNome()+"', "
-                + "tipo = '"+a.getTipo()+"', "
-                + "dataManutencao = '"+a.getDataManutencao()+"', "
-                + "status = '"+a.getTipo()+"' "
-                + "WHERE idAtracao = '"+a.getIdAtracao()+"'";
+        String query = "UPDATE Atracao SET "
+                + "nome = '" + a.getNome() + "', "
+                + "tipo = '" + a.getTipo() + "', "
+                + "dataManutencao = '" + a.getDataManutencao() + "', "
+                + "status = '" + a.getStatus()+ "' "
+                + "WHERE idAtracao = '" + a.getIdAtracao() + "'";
 
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="Funcionario_Loja">
-    
     //<editor-fold>
-    
 }
