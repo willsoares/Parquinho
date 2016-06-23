@@ -356,7 +356,6 @@ public class BDController {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Funcionario_Loja">
-<<<<<<< HEAD
     public void adicionaFuncionarioLoja(Funcionario f, Loja l) throws ClassNotFoundException, SQLException{
         int idLoja = l.getIdLoja();
         int idFuncionario = f.getIdFuncionario();
