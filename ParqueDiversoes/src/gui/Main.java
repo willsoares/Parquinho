@@ -10,6 +10,7 @@ import gui.insercao.InsercaoFuncionario;
 import gui.insercao.InsercaoLoja;
 import gui.insercao.InsercaoAtracao;
 import banco.ConexaoBD;
+import gui.atualizacao.AtualizacaoAtracao;
 import gui.atualizacao.AtualizacaoFuncionario;
 import gui.atualizacao.AtualizacaoLoja;
 import gui.atualizacao.AtualizacaoProduto;
@@ -114,6 +115,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton8.setText("Atração");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Produto");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -308,6 +314,29 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        String s = (String) JOptionPane.showInputDialog(
+                this,
+                "Insira o id da atração:\n",
+                "Customized Dialog",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ID Atração");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            try {
+                AtualizacaoAtracao atualizacaoAtracao = new AtualizacaoAtracao(Integer.parseInt(s));
+                atualizacaoAtracao.setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
