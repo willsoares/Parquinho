@@ -141,6 +141,7 @@ public class BDController {
     }
 
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="Loja">
     public void insereLoja(Loja l) throws ClassNotFoundException, SQLException {
         String categoria, nome, local;
@@ -241,7 +242,9 @@ public class BDController {
             p.setTipo(r.getString("tipo"));
             produtos.add(p);
         }
+        conn.fechaConexao();
         return produtos;
+
     }
     
     public Produto selectProduto(int id) throws ClassNotFoundException, SQLException{
@@ -257,6 +260,8 @@ public class BDController {
             p.setNome(r.getString("nome"));
             p.setPreco(r.getDouble("preco"));
             p.setTipo(r.getString("tipo"));
+        
+        conn.fechaConexao();
         return p;
     }
     
@@ -268,7 +273,7 @@ public class BDController {
                 + "marca = '"+p.getMarca()+"', "
                 + "preco = '"+p.getPreco()+"', "
                 + "tipo = '"+p.getTipo()+"', "
-                + " WHERE idFuncionario = '"+p.getIdProduto()+"'";
+                + " WHERE idProduto = '"+p.getIdProduto()+"'";
         
         conn.executaSQL(query);
         conn.fechaConexao();
@@ -279,18 +284,69 @@ public class BDController {
     //<editor-fold defaultstate="collapsed" desc="Atração">
     public void insereAtracao(Atracao a) throws ClassNotFoundException, SQLException {
         String nome, tipo;
-        Date dataManutencao;
+        Date date;
         int status;
 
         nome = a.getNome();
+        date = a.getDataManutencao();
         tipo = a.getTipo();
-        dataManutencao = a.getDataManutencao();
         status = a.getStatus();
 
-        String query = "INSERT INTO Atracao(nome, tipo, dataManutencao, status) values "
-                + "('" + nome + "', '" + tipo + "', '" + dataManutencao + "', '" + status + "');";
+        String query = "INSERT INTO Produto(nome, dataManutencao, tipo, status) values "
+                + "('" + nome + "', '" + date + "', '" + tipo + "', '" + status + "');";
 
         this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
+    public ArrayList<Atracao> selectAllAtracao() throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+
+        ArrayList<Atracao> atracoes = new ArrayList();
+        String query = "SELECT * FROM Atracao";
+        ResultSet r = this.conn.executaSQL(query);
+        
+        while(r.next()){
+            Atracao a = new Atracao();
+            a.setIdAtracao(r.getInt("idAtracao"));
+            a.setDataManutencao(r.getDate("dataManutencao"));
+            a.setNome(r.getString("nome"));
+            a.setStatus(r.getInt("status"));
+            a.setTipo(r.getString("tipo"));
+            atracoes.add(a);
+        }
+        conn.fechaConexao();
+        return atracoes;
+    }
+    
+    public Atracao selectAtracao(int id) throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+
+        String query = "SELECT * FROM Atracao";
+        ResultSet r = this.conn.executaSQL(query);
+        r.next();
+        
+        Atracao a = new Atracao();
+            a.setIdAtracao(r.getInt("idAtracao"));
+            a.setDataManutencao(r.getDate("dataManutencao"));
+            a.setNome(r.getString("nome"));
+            a.setStatus(r.getInt("status"));
+            a.setTipo(r.getString("tipo"));
+        
+        conn.fechaConexao();
+        return a;
+    }
+    
+    public void atualizaAtracao(Atracao a) throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+        
+        String query = "UPDATE Produto SET "
+                + "nome = '"+a.getNome()+"', "
+                + "tipo = '"+a.getTipo()+"', "
+                + "dataManutencao = '"+a.getDataManutencao()+"', "
+                + "status = '"+a.getTipo()+"', "
+                + " WHERE idAtracao = '"+a.getIdAtracao()+"'";
+        
         conn.executaSQL(query);
         conn.fechaConexao();
     }

@@ -33,6 +33,11 @@ public class Atracao {
         this.status = status;
     }
 
+    public Atracao() {
+    }
+    
+    
+
     public int getIdAtracao() {
         return idAtracao;
     }
