@@ -24,6 +24,8 @@ public class InsercaoAtracao extends javax.swing.JFrame {
     public InsercaoAtracao() {
         initComponents();
         
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
         setTitle("Insira uma nova Atração");
     }
 

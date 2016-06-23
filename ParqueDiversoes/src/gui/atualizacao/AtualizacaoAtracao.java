@@ -27,6 +27,8 @@ public class AtualizacaoAtracao extends javax.swing.JFrame {
         initComponents();
         
         setTitle("Atualize uma Atração");
+        
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 
         preencheCampos(idAtracao);
     }

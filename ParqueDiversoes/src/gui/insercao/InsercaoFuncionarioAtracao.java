@@ -23,6 +23,10 @@ public class InsercaoFuncionarioAtracao extends javax.swing.JFrame {
      */
     public InsercaoFuncionarioAtracao() {
         initComponents();
+        
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
+        setTitle("Insira um funcionário a uma atração");
     }
 
     /**

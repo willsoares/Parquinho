@@ -23,6 +23,8 @@ public class RemocaoFuncionarioAtracao extends javax.swing.JFrame {
     public RemocaoFuncionarioAtracao() {
         initComponents();
         
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
         setTitle("Remover um Funcionário de uma Atração");
     }
 

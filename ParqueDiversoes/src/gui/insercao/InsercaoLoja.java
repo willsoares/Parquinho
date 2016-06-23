@@ -23,6 +23,8 @@ public class InsercaoLoja extends javax.swing.JFrame {
     public InsercaoLoja() {
         initComponents();
 
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
         setTitle("Insira uma nova Loja");
 
     }

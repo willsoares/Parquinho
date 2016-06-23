@@ -26,6 +26,8 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
     public AtualizacaoFuncionario(int idFuncionario) throws ClassNotFoundException, SQLException {
         initComponents();
 
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
         setTitle("Atualize um Funcionário");
 
         preencheCampos(idFuncionario);

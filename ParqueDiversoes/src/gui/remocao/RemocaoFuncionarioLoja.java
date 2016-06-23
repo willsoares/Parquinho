@@ -23,6 +23,8 @@ public class RemocaoFuncionarioLoja extends javax.swing.JFrame {
     public RemocaoFuncionarioLoja() {
         initComponents();
         
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
         setTitle("Remover funcionario de uma loja");
     }
 

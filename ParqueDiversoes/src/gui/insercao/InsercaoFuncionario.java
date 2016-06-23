@@ -23,6 +23,8 @@ public class InsercaoFuncionario extends javax.swing.JFrame {
     public InsercaoFuncionario() {
         initComponents();
 
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
         setTitle("Insira um novo Funcionário");
 
     }

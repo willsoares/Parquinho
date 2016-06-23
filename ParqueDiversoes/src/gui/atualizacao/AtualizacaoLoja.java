@@ -26,6 +26,8 @@ public class AtualizacaoLoja extends javax.swing.JFrame {
     public AtualizacaoLoja(int idLoja) throws ClassNotFoundException, SQLException {
         initComponents();
 
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
         setTitle("Atualize um Funcionário");
 
         preencheCampos(idLoja);

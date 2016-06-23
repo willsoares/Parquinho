@@ -27,6 +27,8 @@ public class AtualizacaoProduto extends javax.swing.JFrame {
     public AtualizacaoProduto(int idProduto) throws ClassNotFoundException, SQLException {
         initComponents();
 
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        
         setTitle("Atualize um Produto");
 
         preencheCampos(idProduto);

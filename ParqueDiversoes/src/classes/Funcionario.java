@@ -123,7 +123,7 @@ public class Funcionario {
         String s ="\nFuncionario "+idFuncionario+"\n"
                 + "Nome: "+getNomeCompleto()+"\n"
                 + "CPF: "+cpf+"\n"
-                + "Salario: R$: "+salario+"\t|\tCargo: "+cargo+"\n"
+                + "Salario: R$: "+salario+"  |  Cargo: "+cargo+"\n"
                 + "Sexo: "+sexo+"\n"
                 + "Gerente: "+idGerente+"\n";
         return s;

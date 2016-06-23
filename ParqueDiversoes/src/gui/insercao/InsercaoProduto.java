@@ -22,6 +22,8 @@ public class InsercaoProduto extends javax.swing.JFrame {
      */
     public InsercaoProduto() {
         initComponents();
+        
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 
         setTitle("Insira um novo Produto");
 

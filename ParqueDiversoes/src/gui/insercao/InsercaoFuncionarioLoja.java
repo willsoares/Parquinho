@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  * @author Hugo
  */
 public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
+
     private BDController bDController;
 
     /**
@@ -22,9 +23,11 @@ public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
      */
     public InsercaoFuncionarioLoja() {
         initComponents();
-        
+
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+
         setTitle("Inserir Funcionário em uma Loja");
-            }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,18 +105,18 @@ public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jTextField1.getText().trim() != "" && jTextField2.getText().trim() != "") {
-            
+
             this.bDController = new BDController();
-            
+
             try {
-                bDController.adicionaFuncionarioLoja(Integer.valueOf(jTextField2.getText().toString()), 
+                bDController.adicionaFuncionarioLoja(Integer.valueOf(jTextField2.getText().toString()),
                         Integer.valueOf(jTextField1.getText().toString()));
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsercaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(InsercaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -121,7 +124,6 @@ public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

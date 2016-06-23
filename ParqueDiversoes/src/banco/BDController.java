@@ -109,7 +109,9 @@ public class BDController {
         String query = "SELECT * FROM Funcionario";
         ResultSet r = this.conn.executaSQL(query);
 
-        while (r.next()) {
+        r.next();
+        
+        while (!r.isLast()) {
             Funcionario f = new Funcionario();
             f.setIdFuncionario(r.getInt("idFuncionario"));
             f.setNome(r.getString("nome"));
@@ -120,6 +122,7 @@ public class BDController {
             f.setCpf(r.getString("cpf"));
             f.setIdGerente(r.getInt("idGerente"));
             funcionarios.add(f);
+            r.next();
         }
 
         this.conn.fechaConexao();

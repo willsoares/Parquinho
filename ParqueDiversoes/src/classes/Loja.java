@@ -12,14 +12,15 @@ import java.util.ArrayList;
  * @author will
  */
 public class Loja {
+
     private int idLoja;
     private String categoria;
     private String nome;
     private String local;
     private ArrayList<Estoque> estoque;
-    
+
     public Loja() {
-    
+
     }
 
     public Loja(int idLoja, String categoria, String nome, String local) {
@@ -33,7 +34,7 @@ public class Loja {
         this.categoria = categoria;
         this.nome = nome;
         this.local = local;
-    }    
+    }
 
     public int getIdLoja() {
         return idLoja;
@@ -66,6 +67,9 @@ public class Loja {
     public void setLocal(String local) {
         this.local = local;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Loja " + idLoja + "\nCategoria: " + categoria + "\nNome: " + nome + "\nLocal: " + local + "\n\n";
+    }
 }
