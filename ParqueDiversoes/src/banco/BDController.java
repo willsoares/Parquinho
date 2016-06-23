@@ -382,9 +382,7 @@ public class BDController {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Funcionario_Loja">
-    public void adicionaFuncionarioLoja(Funcionario f, Loja l) throws ClassNotFoundException, SQLException {
-        int idLoja = l.getIdLoja();
-        int idFuncionario = f.getIdFuncionario();
+    public void adicionaFuncionarioLoja(int idLoja, int idFuncionario) throws ClassNotFoundException, SQLException {
         Date dataInicio = Date.valueOf(LocalDate.now());
         
         String query = "INSERT INTO Loja_has_Funcionario(idLoja, idFuncionario, dataInicio) values "
@@ -495,6 +493,8 @@ public class BDController {
     
     //<editor-fold defaultstate="collapsed" desc="Views">
     public void visaoTrabalhaEm(){
+        String query = "SELECT * FROM visao_trabalha_em;";
+        
         
     }
     //</editor-fold>
