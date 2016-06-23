@@ -94,7 +94,7 @@ public class BDController {
     }
 
     public void removeFuncionario(int id) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         String query = "DELETE FROM Funcionario WHERE idFuncionario = '" + id + "'";
         this.conn.executaSQL(query);
@@ -210,9 +210,9 @@ public class BDController {
         conn.fechaConexao();
 
     }
-    
+
     public void removeLoja(int id) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         String query = "DELETE FROM Loja WHERE idLoja = '" + id + "'";
         this.conn.executaSQL(query);
@@ -292,8 +292,9 @@ public class BDController {
         conn.fechaConexao();
 
     }
+
     public void removeProduto(int id) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         String query = "DELETE FROM Produto WHERE idProduto = '" + id + "'";
         this.conn.executaSQL(query);
@@ -363,15 +364,16 @@ public class BDController {
                 + "nome = '" + a.getNome() + "', "
                 + "tipo = '" + a.getTipo() + "', "
                 + "dataManutencao = '" + a.getDataManutencao() + "', "
-                + "status = '" + a.getStatus()+ "' "
+                + "status = '" + a.getStatus() + "' "
                 + "WHERE idAtracao = '" + a.getIdAtracao() + "'";
 
         this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
+
     public void removeAtracao(int id) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
 
         String query = "DELETE FROM Atracao WHERE idAtracao = '" + id + "'";
         this.conn.executaSQL(query);
@@ -380,7 +382,7 @@ public class BDController {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Funcionario_Loja">
-    public void adicionaFuncionarioLoja(Funcionario f, Loja l) throws ClassNotFoundException, SQLException{
+    public void adicionaFuncionarioLoja(Funcionario f, Loja l) throws ClassNotFoundException, SQLException {
         int idLoja = l.getIdLoja();
         int idFuncionario = f.getIdFuncionario();
         Date dataInicio = Date.from(Instant.now());
@@ -392,14 +394,16 @@ public class BDController {
         conn.executaSQL(query);
         conn.fechaConexao();
     }
-    public void removeFuncionarioLoja(int idF, int idL) throws ClassNotFoundException, SQLException {
-        this.conn = ConexaoBD.getInstance();
 
-        String query = "DELETE FROM Loja_has_Funcionario WHERE idFuncionario = '" + idF + "', idLoja = '"+idL+"';";
+    public void removeFuncionarioLoja(int idF, int idL) throws ClassNotFoundException, SQLException {
+        this.conn = new ConexaoBD();
+
+        String query = "DELETE FROM Loja_has_Funcionario WHERE idFuncionario = '" + idF + "', idLoja = '" + idL + "';";
         this.conn.executaSQL(query);
         this.conn.fechaConexao();
     }
 
+<<<<<<< HEAD
     public void atualizaFuncionarioLoja(int idLoja,  int idFuncionario, Date d) throws ClassNotFoundException, SQLException{
         String query = "UPDATE Loja_has_Funcionario SET "
                 + "dataInicio = '" + d + "' "
@@ -435,39 +439,40 @@ public class BDController {
     
     
     
+=======
+>>>>>>> 18c8b64d7b18c0e182bc64f504ba68023f2b2839
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="Estoque">
-    public void adicionaEstoque(int idLoja,  int idProduto, double q) throws ClassNotFoundException, SQLException{
+    public void adicionaEstoque(int idLoja, int idProduto, double q) throws ClassNotFoundException, SQLException {
         String query = "INSERT INTO Estoque(idLoja, idProduto, quantidade) values "
                 + "('" + idLoja + "', '" + idProduto + "', '" + q + "');";
-        
+
         this.conn = ConexaoBD.getInstance();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
-    
-    public void atualizaEstoque(int idLoja,  int idProduto, double q) throws ClassNotFoundException, SQLException{
+
+    public void atualizaEstoque(int idLoja, int idProduto, double q) throws ClassNotFoundException, SQLException {
         String query = "UPDATE Estoque SET "
                 + "quantidade = '" + q + "' "
                 + "WHERE idLoja = '" + idLoja + "' AND idProduto = '" + idProduto + "';";
-        
+
         this.conn = ConexaoBD.getInstance();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
-    
-    public void removeEstoque(int idLoja,  int idProduto) throws ClassNotFoundException, SQLException{
+
+    public void removeEstoque(int idLoja, int idProduto) throws ClassNotFoundException, SQLException {
         String query = "DELETE FROM Funcionario WHERE idLoja = '" + idLoja + ""
-                + "' AND idProduto = '"+idProduto+"'; ";
-        
-        this.conn = ConexaoBD.getInstance();
+                + "' AND idProduto = '" + idProduto + "'; ";
+
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }
-    
-    public Estoque selectEstoque(int idLoja,  int idProduto) throws ClassNotFoundException, SQLException{
-        String query = "SELECT quantidade FROM Estoque WHERE idLoja = '"+idLoja+"' AND idProduto = '"+idProduto+"';";
+
+    public Estoque selectEstoque(int idLoja, int idProduto) throws ClassNotFoundException, SQLException {
+        String query = "SELECT quantidade FROM Estoque WHERE idLoja = '" + idLoja + "' AND idProduto = '" + idProduto + "';";
         this.conn = ConexaoBD.getInstance();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
@@ -475,23 +480,23 @@ public class BDController {
         Estoque e = new Estoque(idLoja, idProduto, r.getDouble("quantidade"));
         return e;
     }
-    
-    public ArrayList<Estoque> selectAllEstoque() throws ClassNotFoundException, SQLException{
+
+    public ArrayList<Estoque> selectAllEstoque() throws ClassNotFoundException, SQLException {
         String query = "SELECT * FROM Estoque";
         this.conn = ConexaoBD.getInstance();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
-        
+
         ArrayList<Estoque> estoque = new ArrayList();
-        while(r.next()){
+        while (r.next()) {
             Estoque e = new Estoque(r.getInt("idLoja"), r.getInt("idProduto"), r.getDouble("quantidade"));
             estoque.add(e);
         }
         return estoque;
     }
-    
     //</editor-fold>
 
+    
     //<editor-fold defaultstate="collapsed" desc="Views">
     public void visaoTrabalhaEm(){
         
