@@ -66,6 +66,13 @@ public class Loja {
     public void setLocal(String local) {
         this.local = local;
     }
+
+    @Override
+    public String toString() {
+        return "Loja{" + "idLoja=" + idLoja + ", categoria=" + categoria + ", nome=" + nome + ", local=" + local + '}';
+    }
+    
+    
     
     
 }
