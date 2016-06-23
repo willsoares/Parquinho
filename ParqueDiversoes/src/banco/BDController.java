@@ -250,7 +250,7 @@ public class BDController {
     public Produto selectProduto(int id) throws ClassNotFoundException, SQLException{
         this.conn = ConexaoBD.getInstance();
 
-        String query = "SELECT * FROM Produto";
+        String query = "SELECT * FROM Produto WHERE idProduto = '"+ id +"';";
         ResultSet r = this.conn.executaSQL(query);
         r.next();
 
@@ -271,7 +271,7 @@ public class BDController {
                 + "nome = '"+p.getNome()+"', "
                 + "marca = '"+p.getMarca()+"', "
                 + "preco = '"+p.getPreco()+"', "
-                + "tipo = '"+p.getTipo()+"', "
+                + "tipo = '"+p.getTipo()+"'"
                 + " WHERE idProduto = '"+p.getIdProduto()+"'";
         
         this.conn = new ConexaoBD();
@@ -322,7 +322,7 @@ public class BDController {
     public Atracao selectAtracao(int id) throws ClassNotFoundException, SQLException{
         this.conn = ConexaoBD.getInstance();
 
-        String query = "SELECT * FROM Atracao";
+        String query = "SELECT * FROM Atracao WHERE idAtracao = "+ id + "';";
         ResultSet r = this.conn.executaSQL(query);
         r.next();
         
@@ -344,12 +344,17 @@ public class BDController {
                 + "nome = '"+a.getNome()+"', "
                 + "tipo = '"+a.getTipo()+"', "
                 + "dataManutencao = '"+a.getDataManutencao()+"', "
-                + "status = '"+a.getTipo()+"', "
-                + " WHERE idAtracao = '"+a.getIdAtracao()+"'";
+                + "status = '"+a.getTipo()+"' "
+                + "WHERE idAtracao = '"+a.getIdAtracao()+"'";
         
         conn.executaSQL(query);
         conn.fechaConexao();
     }
     //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Funcionario_Loja">
+    
+    //<editor-fold>
+    
 
 }
