@@ -455,13 +455,13 @@ public class BDController {
     public void removeFuncionarioAtracao(int idAtracao, int idFuncionario) throws ClassNotFoundException, SQLException {
         this.conn = new ConexaoBD();
 
-        String query = "DELETE FROM TrabalhaEM WHERE idFuncionario = '" + idFuncionario + "', idAtracao = '" + idAtracao + "';";
+        String query = "DELETE FROM TrabalhaEm WHERE idFuncionario = '" + idFuncionario + "', idAtracao = '" + idAtracao + "';";
         this.conn.executaSQL(query);
         this.conn.fechaConexao();
     }
 
     public void atualizaFuncionarioAtracao(int idFuncionario, int idAtracao, Date d) throws ClassNotFoundException, SQLException{
-        String query = "UPDATE TrabalhaEM SET "
+        String query = "UPDATE TrabalhaEm SET "
                 + "dataInicio = '" + d + "' "
                 + "WHERE idAtracao = '" + idAtracao + "' AND idFuncionario = '" + idFuncionario + "';";
         
@@ -471,7 +471,7 @@ public class BDController {
     }
     
     public AtracaoHasFuncionario selectFuncionarioAtracao(int idFuncionario, int idAtracao) throws ClassNotFoundException, SQLException{
-        String query = "SELECT dataInicio FROM TrabalhaEM WHERE idAtracao = '"+idAtracao+"' AND idFuncionario = '"+idFuncionario+"';";
+        String query = "SELECT dataInicio FROM TrabalhaEm WHERE idAtracao = '"+idAtracao+"' AND idFuncionario = '"+idFuncionario+"';";
         this.conn = ConexaoBD.getInstance();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
@@ -481,7 +481,7 @@ public class BDController {
     }
     
     public ArrayList<AtracaoHasFuncionario> selectAllFuncionarioAtracao() throws ClassNotFoundException, SQLException{
-        String query = "SELECT * FROM TrabalhaEM;";
+        String query = "SELECT * FROM TrabalhaEm;";
         this.conn = ConexaoBD.getInstance();
         ResultSet r = conn.executaSQL(query);
         conn.fechaConexao();
@@ -494,7 +494,6 @@ public class BDController {
     }
     
     //</editor-fold>
-
     
     //<editor-fold defaultstate="collapsed" desc="Estoque">
     public void adicionaEstoque(int idLoja, int idProduto, double q) throws ClassNotFoundException, SQLException {
@@ -595,6 +594,7 @@ public class BDController {
     }
     //</editor-fold>
 
+    
 
     
 }

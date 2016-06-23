@@ -13,8 +13,42 @@ import java.util.ArrayList;
  */
 public class Venda {
     private int idVenda;
-    private Funcionario funcionario;
-    private Loja loja;
+    private int idFuncionario;
+    private int idLoja;
     private ArrayList<ItemVenda> itensVenda;
+
+    @Override
+    public String toString() {
+        return "Venda{" + "idVenda=" + idVenda + ", idFuncionario=" + idFuncionario + ", idLoja=" + idLoja + ", itensVenda=" + itensVenda + '}';
+    }
+
+    public int getIdVenda() {
+        return idVenda;
+    }
+
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
+    }
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
+
+    public int getIdLoja() {
+        return idLoja;
+    }
+
+    public void setIdLoja(int idLoja) {
+        this.idLoja = idLoja;
+    }
+
+    public Venda() {
+    }
+    
+    
     
 }

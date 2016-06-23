@@ -48,6 +48,11 @@ public class AtracaoHasFuncionario {
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
+
+    @Override
+    public String toString() {
+        return "AtracaoHasFuncionario{" + "idAtracao=" + idAtracao + ", idFuncionario=" + idFuncionario + ", dataInicio=" + dataInicio + '}';
+    }
     
     
 }

@@ -48,6 +48,13 @@ public class LojaHasFuncionario {
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
+
+    @Override
+    public String toString() {
+        return "LojaHasFuncionario{" + "idLoja=" + idLoja + ", idFuncionario=" + idFuncionario + ", dataInicio=" + dataInicio + '}';
+    }
+    
+    
     
     
 }

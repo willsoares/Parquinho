@@ -77,6 +77,11 @@ public class Atracao {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Atracao{" + "idAtracao=" + idAtracao + ", nome=" + nome + ", tipo=" + tipo + ", dataManutencao=" + dataManutencao + ", status=" + status + '}';
+    }
     
     
     

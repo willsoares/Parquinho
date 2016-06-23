@@ -50,6 +50,11 @@ public class Estoque {
     public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
     }
+
+    @Override
+    public String toString() {
+        return "Estoque{" + "idLoja=" + idLoja + ", idProduto=" + idProduto + ", quantidade=" + quantidade + '}';
+    }
     
     
 }
