@@ -22,6 +22,8 @@ public class Views extends javax.swing.JFrame {
     public Views(int numView) throws ClassNotFoundException, SQLException {
         initComponents();
 
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+
         if (numView == 1) {
             jLabel1.setText("Trabalha Em:");
         } else {
@@ -86,17 +88,17 @@ public class Views extends javax.swing.JFrame {
     private void preencheCampo(int numView) throws ClassNotFoundException, SQLException {
         this.bDController = new BDController();
         String s;
-        
+
         if (numView == 1) {
-            s =  bDController.visaoTrabalhaEm();
+            s = bDController.visaoTrabalhaEm();
         } else {
             if (numView == 2) {
-                s =  bDController.visaoEstoqueLoja();
+                s = bDController.visaoEstoqueLoja();
             } else {
-                s =  bDController.visaoAtracoesAtivas();
+                s = bDController.visaoAtracoesAtivas();
             }
         }
-        
+
         jTextArea1.setText(s);
 
     }
