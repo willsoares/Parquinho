@@ -80,7 +80,7 @@ public class Atracao {
 
     @Override
     public String toString() {
-        return "Atracao{" + "idAtracao=" + idAtracao + ", nome=" + nome + ", tipo=" + tipo + ", dataManutencao=" + dataManutencao + ", status=" + status + '}';
+        return "Atracao " + idAtracao + "\nNome: " + nome + "\nTipo: " + tipo + "\nData de Manutencao: " + dataManutencao + "\nStatus: " + status + "\n\n";
     }
     
     

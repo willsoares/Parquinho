@@ -6,6 +6,7 @@
 package gui.selectAll;
 
 import banco.BDController;
+import classes.Atracao;
 import classes.Funcionario;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,16 +15,15 @@ import java.util.ArrayList;
  *
  * @author Hugo
  */
-public class SelectAllFuncionario extends javax.swing.JFrame {
-
+public class SelectAllAtracao extends javax.swing.JFrame {
     private BDController bDController;
 
     /**
-     * Creates new form SelectAllFuncionario
+     * Creates new form SelectAllAtracao
      */
-    public SelectAllFuncionario() throws ClassNotFoundException, SQLException {
+    public SelectAllAtracao() throws ClassNotFoundException, SQLException {
         initComponents();
-
+        
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         
         setTitle("Select de Todos os Funcionários");
@@ -40,17 +40,17 @@ public class SelectAllFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Atrações:");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-
-        jLabel1.setText("Funcionários:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,12 +58,12 @@ public class SelectAllFuncionario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addGap(170, 170, 170)
                 .addComponent(jLabel1)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,12 +81,12 @@ public class SelectAllFuncionario extends javax.swing.JFrame {
     private void preencheCampo() throws ClassNotFoundException, SQLException {
         this.bDController = new BDController();
 
-        ArrayList<Funcionario> funcionarios = bDController.selectAllFuncionario();
+        ArrayList<Atracao> atracoes = bDController.selectAllAtracao();
 
         StringBuilder sb = new StringBuilder();
         
-        for (Funcionario f : funcionarios) {
-            sb.append(f.toString());
+        for (Atracao a : atracoes) {
+            sb.append(a.toString());
         }
         
         jTextArea1.setText(sb.toString());

@@ -19,8 +19,10 @@ import gui.insercao.InsercaoFuncionarioAtracao;
 import gui.insercao.InsercaoFuncionarioLoja;
 import gui.remocao.RemocaoFuncionarioAtracao;
 import gui.remocao.RemocaoFuncionarioLoja;
+import gui.selectAll.SelectAllAtracao;
 import gui.selectAll.SelectAllFuncionario;
 import gui.selectAll.SelectAllLoja;
+import gui.selectAll.SelectAllProduto;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -606,11 +608,27 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+        SelectAllAtracao selectAllAtracao;
+        try {
+            selectAllAtracao = new SelectAllAtracao();
+            selectAllAtracao.setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
+        SelectAllProduto selectAllProduto;
+        try {
+            selectAllProduto = new SelectAllProduto();
+            selectAllProduto.setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton21ActionPerformed
 
     /**
