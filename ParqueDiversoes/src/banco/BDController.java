@@ -266,7 +266,7 @@ public class BDController {
                 + "nome = '"+p.getNome()+"', "
                 + "marca = '"+p.getMarca()+"', "
                 + "preco = '"+p.getPreco()+"', "
-                + "tipo = '"+p.getTipo()+"', "
+                + "tipo = '"+p.getTipo()+"'"
                 + " WHERE idFuncionario = '"+p.getIdProduto()+"'";
         
         this.conn = new ConexaoBD();
@@ -295,5 +295,9 @@ public class BDController {
         conn.fechaConexao();
     }
     //</editor-fold>
+
+    public Produto selectProdutoById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
