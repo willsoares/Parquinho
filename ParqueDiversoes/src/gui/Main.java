@@ -12,6 +12,7 @@ import gui.insercao.InsercaoAtracao;
 import banco.ConexaoBD;
 import gui.atualizacao.AtualizacaoFuncionario;
 import gui.atualizacao.AtualizacaoLoja;
+import gui.atualizacao.AtualizacaoProduto;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,14 +26,15 @@ public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
+     *
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
      */
     public Main() throws ClassNotFoundException, SQLException {
         initComponents();
 
-        setTitle("* Hopi Carrero *");    
-        
+        setTitle("* Hopi Carrero *");
+
     }
 
     /**
@@ -114,6 +116,11 @@ public class Main extends javax.swing.JFrame {
         jButton8.setText("Atração");
 
         jButton9.setText("Produto");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Remoções:");
 
@@ -231,18 +238,18 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        String s = (String)JOptionPane.showInputDialog(
-                    this,
-                    "Insira o id do funcionário:\n",
-                    "Customized Dialog",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    null,
-                    "ID Usuário");
+        String s = (String) JOptionPane.showInputDialog(
+                this,
+                "Insira o id do funcionário:\n",
+                "Customized Dialog",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ID Usuário");
 
         //If a string was returned, say so.
         if ((s != null) && (s.length() > 0)) {
-            
+
             try {
                 AtualizacaoFuncionario atualizacaoFuncionario = new AtualizacaoFuncionario(Integer.parseInt(s));
                 atualizacaoFuncionario.setVisible(true);
@@ -251,27 +258,56 @@ public class Main extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
+
             return;
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        String s = (String)JOptionPane.showInputDialog(
-                    this,
-                    "Insira o id da loja:\n",
-                    "Customized Dialog",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    null,
-                    "ID Loja");
+        String s = (String) JOptionPane.showInputDialog(
+                this,
+                "Insira o id da loja:\n",
+                "Customized Dialog",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ID Loja");
 
         //If a string was returned, say so.
         if ((s != null) && (s.length() > 0)) {
-            AtualizacaoLoja atualizacaoLoja = new AtualizacaoLoja(Integer.parseInt(s));
-            atualizacaoLoja.setVisible(true);
+            try {
+                AtualizacaoLoja atualizacaoLoja = new AtualizacaoLoja(Integer.parseInt(s));
+                atualizacaoLoja.setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        String s = (String) JOptionPane.showInputDialog(
+                this,
+                "Insira o id do produto:\n",
+                "Customized Dialog",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ID Produto");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            try {
+                AtualizacaoProduto atualizacaoProduto = new AtualizacaoProduto(Integer.parseInt(s));
+                atualizacaoProduto.setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
