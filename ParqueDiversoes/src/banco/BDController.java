@@ -575,41 +575,66 @@ public class BDController {
         
         this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
-        conn.fechaConexao();
-        String s = null;
-        while(r.next()){
-            s = r.toString();
+        
+        StringBuilder sb = new StringBuilder();
+        
+        r.next();
+        
+        while(!r.isAfterLast()){
+            sb.append(r.getString(1)).append(" ");
+            sb.append(r.getString(2)).append("  |  R$");
+            sb.append(r.getString(3)).append("  |  ");
+            sb.append(r.getString(4)).append("\n\n");
+            r.next();
         }
         
-        return s;
+        conn.fechaConexao();
+        return sb.toString();
     }
     
-    public String estoqueLoja() throws ClassNotFoundException, SQLException{
+    public String visaoEstoqueLoja() throws ClassNotFoundException, SQLException{
         String query = "SELECT * FROM estoque_da_loja;";
         
         this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
-        conn.fechaConexao();
-        String s = null;
-        while(r.next()){
-            s = r.toString();
+        
+        StringBuilder sb = new StringBuilder();
+        
+        r.next();
+        
+        while(!r.isAfterLast()){
+            sb.append(r.getString(1)).append("  |  ");
+            sb.append(r.getString(2)).append("  |  ");
+            sb.append(r.getString(3)).append("  |  ");
+            sb.append(r.getString(4)).append("\n\n");
+            r.next();
         }
         
-        return s;
+        conn.fechaConexao();
+        
+        return sb.toString();
     }
     
-    public String atracoesAtivas() throws ClassNotFoundException, SQLException{
+    public String visaoAtracoesAtivas() throws ClassNotFoundException, SQLException{
         String query = "SELECT * FROM atracoes_ativas;";
         
         this.conn = new ConexaoBD();
         ResultSet r = conn.executaSQL(query);
-        conn.fechaConexao();
-        String s = null;
-        while(r.next()){
-            s = r.toString();
+        
+        StringBuilder sb = new StringBuilder();
+        
+        r.next();
+        
+        while(!r.isAfterLast()){
+            sb.append(r.getString(1)).append("  |  ");
+            sb.append(r.getString(2)).append("  |  ");
+            sb.append(r.getString(3)).append("\n\n");
+            r.next();
         }
         
-        return s;
+        conn.fechaConexao();
+        
+        return sb.toString();
     }
     //</editor-fold>
 
