@@ -11,11 +11,11 @@ import classes.Funcionario;
 import classes.Loja;
 import classes.LojaHasFuncionario;
 import classes.Produto;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -385,7 +385,7 @@ public class BDController {
     public void adicionaFuncionarioLoja(Funcionario f, Loja l) throws ClassNotFoundException, SQLException {
         int idLoja = l.getIdLoja();
         int idFuncionario = f.getIdFuncionario();
-        Date dataInicio = Date.from(Instant.now());
+        Date dataInicio = Date.valueOf(LocalDate.now());
         
         String query = "INSERT INTO Loja_has_Funcionario(idLoja, idFuncionario, dataInicio) values "
                 + "('" + idLoja + "', '" + idFuncionario + "', '" + dataInicio + "');";
@@ -403,7 +403,6 @@ public class BDController {
         this.conn.fechaConexao();
     }
 
-<<<<<<< HEAD
     public void atualizaFuncionarioLoja(int idLoja,  int idFuncionario, Date d) throws ClassNotFoundException, SQLException{
         String query = "UPDATE Loja_has_Funcionario SET "
                 + "dataInicio = '" + d + "' "
@@ -437,11 +436,8 @@ public class BDController {
         return la;
     }
     
-    
-    
-=======
->>>>>>> 18c8b64d7b18c0e182bc64f504ba68023f2b2839
     //</editor-fold>
+
     //<editor-fold defaultstate="collapsed" desc="Estoque">
     public void adicionaEstoque(int idLoja, int idProduto, double q) throws ClassNotFoundException, SQLException {
         String query = "INSERT INTO Estoque(idLoja, idProduto, quantidade) values "
