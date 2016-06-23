@@ -152,7 +152,7 @@ public class BDController {
         String query = "INSERT INTO Loja(categoria, nome, local) values "
                 + "('" + categoria + "', '" + nome + "', '" + local + "');";
 
-        this.conn = ConexaoBD.getInstance();
+        this.conn = new ConexaoBD();
         conn.executaSQL(query);
         conn.fechaConexao();
     }

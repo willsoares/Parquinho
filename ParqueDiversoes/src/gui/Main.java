@@ -11,6 +11,7 @@ import gui.insercao.InsercaoLoja;
 import gui.insercao.InsercaoAtracao;
 import banco.ConexaoBD;
 import gui.atualizacao.AtualizacaoFuncionario;
+import gui.atualizacao.AtualizacaoLoja;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -104,6 +105,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton7.setText("Loja");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Atração");
 
@@ -236,10 +242,9 @@ public class Main extends javax.swing.JFrame {
 
         //If a string was returned, say so.
         if ((s != null) && (s.length() > 0)) {
-            AtualizacaoFuncionario atualizacaoFuncionario;
             
             try {
-                atualizacaoFuncionario = new AtualizacaoFuncionario(Integer.parseInt(s));
+                AtualizacaoFuncionario atualizacaoFuncionario = new AtualizacaoFuncionario(Integer.parseInt(s));
                 atualizacaoFuncionario.setVisible(true);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -250,6 +255,23 @@ public class Main extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        String s = (String)JOptionPane.showInputDialog(
+                    this,
+                    "Insira o id da loja:\n",
+                    "Customized Dialog",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "ID Loja");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            AtualizacaoLoja atualizacaoLoja = new AtualizacaoLoja(Integer.parseInt(s));
+            atualizacaoLoja.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

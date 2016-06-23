@@ -17,7 +17,8 @@ import java.util.logging.Logger;
  */
 public class AtualizacaoFuncionario extends javax.swing.JFrame {
 
-    Funcionario funcionario;
+    private BDController bDController;
+    private Funcionario funcionario;
 
     /**
      * Creates new form AtualizacaoFuncionario
@@ -187,9 +188,8 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void preencheCampos(int id) throws ClassNotFoundException, SQLException {
-        BDController bDController = new BDController();
+        this.bDController = new BDController();
         this.funcionario = bDController.selectFuncionarioById(id);
-        bDController = null;
 
         jTextField1.setText(funcionario.getNome());
         jTextField2.setText(funcionario.getSobrenome());
@@ -226,9 +226,7 @@ public class AtualizacaoFuncionario extends javax.swing.JFrame {
             this.funcionario.setIdGerente(Integer.valueOf(jTextField7.getText().toString()));
 
             try {
-                BDController bDController = new BDController();
                 bDController.atualizaFuncionario(funcionario);
-                bDController = null;
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AtualizacaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
