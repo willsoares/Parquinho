@@ -441,7 +441,7 @@ public class BDController {
     public void adicionaFuncionarioAtracao(int idFuncionario, int idAtracao) throws ClassNotFoundException, SQLException {
         Date dataInicio = Date.valueOf(LocalDate.now());
         
-        String query = "INSERT INTO TrabalhaEM(idAtracao, idFuncionario, dataInicio) values "
+        String query = "INSERT INTO TrabalhaEm(idAtracao, idFuncionario, dataInicio) values "
                 + "('" + idAtracao + "', '" + idFuncionario + "', '" + dataInicio + "');";
         
         this.conn = ConexaoBD.getInstance();

@@ -15,6 +15,7 @@ import gui.atualizacao.AtualizacaoAtracao;
 import gui.atualizacao.AtualizacaoFuncionario;
 import gui.atualizacao.AtualizacaoLoja;
 import gui.atualizacao.AtualizacaoProduto;
+import gui.insercao.InsercaoFuncionarioAtracao;
 import gui.insercao.InsercaoFuncionarioLoja;
 import gui.remocao.RemocaoFuncionarioAtracao;
 import gui.remocao.RemocaoFuncionarioLoja;
@@ -174,6 +175,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton15.setText("Vincular Funcionário à Atração");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("Remover Funcionário da Loja");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -512,6 +518,11 @@ public class Main extends javax.swing.JFrame {
         RemocaoFuncionarioAtracao remocaoFuncionarioAtracao = new RemocaoFuncionarioAtracao();
         remocaoFuncionarioAtracao.setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        InsercaoFuncionarioAtracao insercaoFuncionarioAtracao = new InsercaoFuncionarioAtracao();
+        insercaoFuncionarioAtracao.setVisible(true);
+    }//GEN-LAST:event_jButton15ActionPerformed
 
     /**
      * @param args the command line arguments
