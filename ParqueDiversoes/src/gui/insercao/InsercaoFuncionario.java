@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.insercao;
 
 import banco.BDController;
 import classes.Funcionario;
@@ -74,8 +74,6 @@ public class InsercaoFuncionario extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-
-        jTextField7.setText("jTextField1");
 
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -186,14 +184,21 @@ public class InsercaoFuncionario extends javax.swing.JFrame {
 
             BDController bDController = new BDController();
 
-            Funcionario funcionario = new Funcionario(
-                    jTextField1.getText().toString(),
-                    jTextField2.getText().toString(),
-                    Double.valueOf(jTextField3.getText().toString()),
-                    jTextField4.getText().toString(),
-                    jTextField5.getText().toString(),
-                    jTextField6.getText().toString(),
-                    Integer.valueOf(jTextField7.getText().toString()));
+            Funcionario funcionario;
+            try {
+                funcionario = new Funcionario(
+                        jTextField1.getText().toString(),
+                        jTextField2.getText().toString(),
+                        Double.valueOf(jTextField3.getText().toString()),
+                        jTextField4.getText().toString(),
+                        jTextField5.getText().toString(),
+                        jTextField6.getText().toString(),
+                        Integer.valueOf(jTextField7.getText().toString()));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(InsercaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(InsercaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             try {
                 bDController.insereFuncionario(funcionario);
