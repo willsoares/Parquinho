@@ -208,6 +208,14 @@ public class BDController {
         conn.fechaConexao();
 
     }
+    
+    public void removeLoja(int id) throws ClassNotFoundException, SQLException {
+        this.conn = ConexaoBD.getInstance();
+
+        String query = "DELETE FROM Loja WHERE idLoja = '" + id + "'";
+        this.conn.executaSQL(query);
+        this.conn.fechaConexao();
+    }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Produto">
@@ -282,6 +290,13 @@ public class BDController {
         conn.fechaConexao();
 
     }
+    public void removeProduto(int id) throws ClassNotFoundException, SQLException {
+        this.conn = ConexaoBD.getInstance();
+
+        String query = "DELETE FROM Produto WHERE idProduto = '" + id + "'";
+        this.conn.executaSQL(query);
+        this.conn.fechaConexao();
+    }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Atração">
@@ -353,10 +368,16 @@ public class BDController {
         conn.executaSQL(query);
         conn.fechaConexao();
     }
+    public void removeAtracao(int id) throws ClassNotFoundException, SQLException {
+        this.conn = ConexaoBD.getInstance();
+
+        String query = "DELETE FROM Atracao WHERE idAtracao = '" + id + "'";
+        this.conn.executaSQL(query);
+        this.conn.fechaConexao();
+    }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Funcionario_Loja">
-<<<<<<< HEAD
     public void adicionaFuncionarioLoja(Funcionario f, Loja l) throws ClassNotFoundException, SQLException{
         int idLoja = l.getIdLoja();
         int idFuncionario = f.getIdFuncionario();
@@ -368,6 +389,13 @@ public class BDController {
         this.conn = ConexaoBD.getInstance();
         conn.executaSQL(query);
         conn.fechaConexao();
+    }
+    public void removeFuncionarioLoja(int idF, int idL) throws ClassNotFoundException, SQLException {
+        this.conn = ConexaoBD.getInstance();
+
+        String query = "DELETE FROM Loja_has_Funcionario WHERE idFuncionario = '" + idF + "', idLoja = '"+idL+"';";
+        this.conn.executaSQL(query);
+        this.conn.fechaConexao();
     }
     
     
