@@ -24,9 +24,9 @@ public class AtualizacaoProduto extends javax.swing.JFrame {
     /**
      * Creates new form AtualizacaoProduto
      */
-    public AtualizacaoProduto(int idProduto) {
+    public AtualizacaoProduto(int idProduto) throws ClassNotFoundException, SQLException {
         initComponents();
-        
+
         setTitle("Atualize um Produto");
 
         preencheCampos(idProduto);
@@ -140,12 +140,12 @@ public class AtualizacaoProduto extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jTextField1.getText().trim() != "" && jTextField2.getText().trim() != "" && jTextField3.getText().trim() != ""
                 && jTextField4.getText().trim() != "") {
-            
+
             this.produto.setNome(jTextField1.getText().toString());
             this.produto.setMarca(jTextField2.getText().toString());
-            this.produto.setPreco(Double.valueOf(jTextField3.getText().toString()));
-            this.produto.setTipo(jTextField4.getText().toString());
-            
+            this.produto.setTipo(jTextField3.getText().toString());
+            this.produto.setPreco(Double.valueOf(jTextField4.getText().toString()));
+
             try {
                 bDController.atualizaProduto(produto);
             } catch (ClassNotFoundException ex) {
@@ -153,7 +153,7 @@ public class AtualizacaoProduto extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(AtualizacaoProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -162,16 +162,16 @@ public class AtualizacaoProduto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void preencheCampos(int id) {
+    public void preencheCampos(int id) throws ClassNotFoundException, SQLException {
         this.bDController = new BDController();
-        this.produto = bDController.selectProdutoById(id);
+        this.produto = bDController.selectProduto(id);
 
         jTextField1.setText(produto.getNome());
         jTextField2.setText(produto.getMarca());
-        jTextField3.setText(String.valueOf(produto.getPreco()));
-        jTextField4.setText(produto.getTipo());
+        jTextField3.setText(produto.getTipo());
+        jTextField4.setText(String.valueOf(produto.getPreco()));
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

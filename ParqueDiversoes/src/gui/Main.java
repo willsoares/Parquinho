@@ -295,11 +295,17 @@ public class Main extends javax.swing.JFrame {
                 null,
                 null,
                 "ID Produto");
-        
+
         //If a string was returned, say so.
         if ((s != null) && (s.length() > 0)) {
-            AtualizacaoProduto atualizacaoProduto = new AtualizacaoProduto(Integer.parseInt(s));
-            atualizacaoProduto.setVisible(true);
+            try {
+                AtualizacaoProduto atualizacaoProduto = new AtualizacaoProduto(Integer.parseInt(s));
+                atualizacaoProduto.setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
