@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.insercao;
+package gui.remocao;
 
 import banco.BDController;
 import java.sql.SQLException;
@@ -14,17 +14,17 @@ import java.util.logging.Logger;
  *
  * @author Hugo
  */
-public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
+public class RemocaoFuncionarioLoja extends javax.swing.JFrame {
     private BDController bDController;
 
     /**
-     * Creates new form InsercaoFuncionarioLoja
+     * Creates new form RemocaoFuncionarioLoja
      */
-    public InsercaoFuncionarioLoja() {
+    public RemocaoFuncionarioLoja() {
         initComponents();
         
-        setTitle("Inserir Funcionário em uma Loja");
-            }
+        setTitle("Remover funcionario de uma loja");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,7 +77,7 @@ public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,11 +90,11 @@ public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(26, 26, 26))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,18 +102,18 @@ public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jTextField1.getText().trim() != "" && jTextField2.getText().trim() != "") {
-            
+
             this.bDController = new BDController();
-            
+
             try {
-                bDController.adicionaFuncionarioLoja(Integer.valueOf(jTextField2.getText().toString()), 
-                        Integer.valueOf(jTextField1.getText().toString()));
+                bDController.removeFuncionarioLoja(Integer.valueOf(jTextField1.getText().toString()),
+                        Integer.valueOf(jTextField2.getText().toString()));
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(InsercaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RemocaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(InsercaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RemocaoFuncionarioLoja.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -122,7 +122,40 @@ public class InsercaoFuncionarioLoja extends javax.swing.JFrame {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(RemocaoFuncionarioLoja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(RemocaoFuncionarioLoja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(RemocaoFuncionarioLoja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(RemocaoFuncionarioLoja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RemocaoFuncionarioLoja().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
