@@ -12,7 +12,42 @@ import java.sql.Date;
  * @author will
  */
 public class LojaHasFuncionario {
-    private Loja loja;
-    private Funcionario funcionario;
+    private int idLoja;
+    private int idFuncionario;
     private Date dataInicio;
+
+    public LojaHasFuncionario(int idLoja, int idFuncionario, Date dataInicio) {
+        this.idLoja = idLoja;
+        this.idFuncionario = idFuncionario;
+        this.dataInicio = dataInicio;
+    }
+
+    public LojaHasFuncionario() {
+    }
+
+    public int getIdLoja() {
+        return idLoja;
+    }
+
+    public void setIdLoja(int idLoja) {
+        this.idLoja = idLoja;
+    }
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
+
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+    
+    
 }

@@ -9,6 +9,7 @@ import classes.Atracao;
 import classes.Estoque;
 import classes.Funcionario;
 import classes.Loja;
+import classes.LojaHasFuncionario;
 import classes.Produto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -143,6 +144,7 @@ public class BDController {
     }
 
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="Loja">
     public void insereLoja(Loja l) throws ClassNotFoundException, SQLException {
         String categoria, nome, local;
@@ -397,6 +399,39 @@ public class BDController {
         this.conn.executaSQL(query);
         this.conn.fechaConexao();
     }
+
+    public void atualizaFuncionarioLoja(int idLoja,  int idFuncionario, Date d) throws ClassNotFoundException, SQLException{
+        String query = "UPDATE Loja_has_Funcionario SET "
+                + "dataInicio = '" + d + "' "
+                + "WHERE idLoja = '" + idLoja + "' AND idFuncionario = '" + idFuncionario + "';";
+        
+        this.conn = ConexaoBD.getInstance();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
+    
+    public LojaHasFuncionario selectFuncionarioLoja(int idLoja,  int idFuncionario) throws ClassNotFoundException, SQLException{
+        String query = "SELECT dataInicio FROM Loja_has_Funcionario WHERE idLoja = '"+idLoja+"' AND idFuncionario = '"+idFuncionario+"';";
+        this.conn = ConexaoBD.getInstance();
+        ResultSet r = conn.executaSQL(query);
+        conn.fechaConexao();
+        r.next();
+        LojaHasFuncionario l = new LojaHasFuncionario(idLoja, idFuncionario, r.getDate("dataInicio"));
+        return l;
+    }
+    
+    public ArrayList<LojaHasFuncionario> selectAllFuncionarioLoja() throws ClassNotFoundException, SQLException{
+        String query = "SELECT * FROM Loja_has_Funcionario;";
+        this.conn = ConexaoBD.getInstance();
+        ResultSet r = conn.executaSQL(query);
+        conn.fechaConexao();
+        ArrayList<LojaHasFuncionario> la = new ArrayList();
+        while(r.next()){
+            LojaHasFuncionario l = new LojaHasFuncionario(r.getInt("idLoja") ,r.getInt("idFuncionario"), r.getDate("dataInicio"));
+            la.add(l);
+        }
+        return la;
+    }
     
     
     
@@ -456,6 +491,13 @@ public class BDController {
     }
     
     //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Views">
+    public void visaoTrabalhaEm(){
+        
+    }
+    //</editor-fold>
+
 
     
 }
