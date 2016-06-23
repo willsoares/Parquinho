@@ -5,9 +5,6 @@
  */
 package classes;
 
-import banco.BDController;
-import java.sql.SQLException;
-
 /**
  *
  * @author will
@@ -22,13 +19,10 @@ public class Funcionario {
     private String cpf;
     private String sexo;
     private int idGerente;
-    private Funcionario gerente;
 
     
     //<editor-fold defaultstate="collapsed" desc="Construtores">
-    public Funcionario(int idFuncionario, String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) throws ClassNotFoundException, SQLException {
-        BDController cont = BDController.getInstance();
-        
+    public Funcionario(int idFuncionario, String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente){
         this.idFuncionario = idFuncionario;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -37,14 +31,9 @@ public class Funcionario {
         this.cpf = cpf;
         this.sexo = sexo;
         this.idGerente = idGerente;
-        
-        this.gerente = cont.selectFuncionarioById(idGerente);
-        
     }
 
-    public Funcionario(String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) throws ClassNotFoundException, SQLException {
-        BDController cont = BDController.getInstance();
-        
+    public Funcionario(String nome, String sobrenome, double salario, String cargo, String cpf, String sexo, int idGerente) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.salario = salario;
@@ -52,17 +41,7 @@ public class Funcionario {
         this.cpf = cpf;
         this.sexo = sexo;
         this.idGerente = idGerente;
-        
-        this.gerente = cont.selectFuncionarioById(idGerente);
     }
-
-    public Funcionario(int idGerente) throws ClassNotFoundException, SQLException {
-        BDController cont = BDController.getInstance();
-
-        this.idGerente = idGerente;
-        this.gerente = cont.selectFuncionarioById(idGerente);
-    }
-    
 
     public Funcionario() {
     }
@@ -133,14 +112,6 @@ public class Funcionario {
         this.idGerente = idGerente;
     }
     
-    public Funcionario getGerente() {
-        return gerente;
-    }
-
-    public void setGerente(Funcionario gerente) {
-        this.gerente = gerente;
-    }
-    
     public String getNomeCompleto(){
         return this.nome+" "+this.sobrenome;
     }
@@ -154,10 +125,8 @@ public class Funcionario {
                 + "CPF: "+cpf+"\n"
                 + "Salario: R$: "+salario+"\t|\tCargo: "+cargo+"\n"
                 + "Sexo: "+sexo+"\n"
-                + "Gerente: "+gerente.getNomeCompleto()+"|"+gerente.getIdFuncionario();
+                + "Gerente: "+idGerente+"\n";
         return s;
     }
-
-    
 
 }

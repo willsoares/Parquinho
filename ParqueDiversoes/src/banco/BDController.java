@@ -60,7 +60,7 @@ public class BDController {
         query = "SELECT * FROM Funcionario WHERE idFuncionario = " + id;
         ResultSet r = conn.executaSQL(query);
 
-        Funcionario f = new Funcionario(r.getInt("idGerente"));
+        Funcionario f = new Funcionario();
         f.setIdFuncionario(r.getInt("idFuncionario"));
         f.setNome(r.getString("nome"));
         f.setSobrenome(r.getString("sobrenome"));
@@ -81,7 +81,7 @@ public class BDController {
         query = "SELECT * FROM Funcionario WHERE idFuncionario like " + cpf;
         ResultSet r = conn.executaSQL(query);
 
-        Funcionario f = new Funcionario(r.getInt("idGerente"));
+        Funcionario f = new Funcionario();
         f.setIdFuncionario(r.getInt("idFuncionario"));
         f.setNome(r.getString("nome"));
         f.setSobrenome(r.getString("sobrenome"));
@@ -111,7 +111,7 @@ public class BDController {
         ResultSet r = this.conn.executaSQL(query);
         
         while(!r.isLast()){
-            Funcionario f = new Funcionario(r.getInt("idGerente"));
+            Funcionario f = new Funcionario();
             f.setIdFuncionario(r.getInt("idFuncionario"));
             f.setNome(r.getString("nome"));
             f.setSobrenome(r.getString("sobrenome"));
@@ -124,6 +124,19 @@ public class BDController {
         }
         
         return funcionarios;
+    }
+    
+    public void atualizaFuncionario(Funcionario f) throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+        
+        String query = "UPDATE Funcionario SET "
+                + "nome = '"+f.getNome()+"', "
+                + "sobrenome = '"+f.getSobrenome()+"', "
+                + "cargo = '"+f.getCargo()+"', "
+                + "salario = '"+f.getSalario()+"', "
+                + "cpf = '"+f.getCpf()+"', "
+                + "idGerente = '"+f.getIdGerente()+"', "
+                + " WHERE idFuncionario = '"+f.getIdFuncionario()+"'";
     }
     
     //</editor-fold>
