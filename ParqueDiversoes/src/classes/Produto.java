@@ -31,6 +31,11 @@ public class Produto {
         this.preco = preco;
     }
 
+    public Produto() {
+    }
+    
+    
+
     public int getIdProduto() {
         return idProduto;
     }

@@ -183,12 +183,44 @@ public class BDController {
             l.setNome(r.getString("nome"));
             lojas.add(l);
         }
-        
         return lojas;
     }
     
-    
+    public Loja selectLoja(int id) throws ClassNotFoundException, SQLException{
+        String query;
+        this.conn = ConexaoBD.getInstance();
 
+        query = "SELECT * FROM Loja WHERE idLoja = " + id;
+        ResultSet r = conn.executaSQL(query);
+        r.next();
+        
+        Loja l = new Loja();
+            l.setCategoria(r.getString("categoria"));
+            l.setIdLoja(r.getInt("idLoja"));
+            l.setLocal(r.getString("local"));
+            l.setNome(r.getString("nome"));
+
+        conn.fechaConexao();
+
+        return l;
+    }
+    
+    public void atualizaLoja(Loja l) throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+        
+        String query = "UPDATE Loja SET "
+                + "nome = '"+l.getNome()+"', "
+                + "categoria = '"+l.getCategoria()+"', "
+                + "local = '"+l.getLocal()+"', "
+                + " WHERE idFuncionario = '"+l.getIdLoja()+"'";
+        
+        conn.executaSQL(query);
+        conn.fechaConexao();
+        
+    }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Produto">
     public void insereProduto(Produto p) throws ClassNotFoundException, SQLException {
         String nome, marca, tipo;
         double preco;
@@ -204,6 +236,55 @@ public class BDController {
         this.conn = ConexaoBD.getInstance();
         conn.executaSQL(query);
         conn.fechaConexao();
+    }
+    public ArrayList<Produto> selectAllProduto() throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+
+        ArrayList<Produto> produtos = new ArrayList();
+        String query = "SELECT * FROM Produto";
+        ResultSet r = this.conn.executaSQL(query);
+        
+        while(r.next()){
+            Produto p = new Produto();
+            p.setIdProduto(r.getInt("idProduto"));
+            p.setMarca(r.getString("marca"));
+            p.setNome(r.getString("nome"));
+            p.setPreco(r.getDouble("preco"));
+            p.setTipo(r.getString("tipo"));
+            produtos.add(p);
+        }
+        return produtos;
+    }
+    
+    public Produto selectProduto(int id) throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+
+        String query = "SELECT * FROM Produto";
+        ResultSet r = this.conn.executaSQL(query);
+        r.next();
+
+        Produto p = new Produto();
+            p.setIdProduto(r.getInt("idProduto"));
+            p.setMarca(r.getString("marca"));
+            p.setNome(r.getString("nome"));
+            p.setPreco(r.getDouble("preco"));
+            p.setTipo(r.getString("tipo"));
+        return p;
+    }
+    
+    public void atualizaProduto(Produto p) throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+        
+        String query = "UPDATE Produto SET "
+                + "nome = '"+p.getNome()+"', "
+                + "marca = '"+p.getMarca()+"', "
+                + "preco = '"+p.getPreco()+"', "
+                + "tipo = '"+p.getTipo()+"', "
+                + " WHERE idFuncionario = '"+p.getIdProduto()+"'";
+        
+        conn.executaSQL(query);
+        conn.fechaConexao();
+        
     }
     //</editor-fold>
     
