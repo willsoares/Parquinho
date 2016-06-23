@@ -59,6 +59,7 @@ public class BDController {
 
         query = "SELECT * FROM Funcionario WHERE idFuncionario = " + id;
         ResultSet r = conn.executaSQL(query);
+        r.next();
 
         Funcionario f = new Funcionario();
         f.setIdFuncionario(r.getInt("idFuncionario"));
@@ -68,6 +69,7 @@ public class BDController {
         f.setSalario(r.getInt("salario"));
         f.setSexo(r.getString("sexo"));
         f.setCpf(r.getString("cpf"));
+        f.setIdGerente(r.getInt("idGerente"));
 
         conn.fechaConexao();
 
@@ -80,7 +82,8 @@ public class BDController {
 
         query = "SELECT * FROM Funcionario WHERE idFuncionario like " + cpf;
         ResultSet r = conn.executaSQL(query);
-
+        r.next();
+        
         Funcionario f = new Funcionario();
         f.setIdFuncionario(r.getInt("idFuncionario"));
         f.setNome(r.getString("nome"));
@@ -110,7 +113,7 @@ public class BDController {
         String query = "SELECT * FROM Funcionario";
         ResultSet r = this.conn.executaSQL(query);
         
-        while(!r.isLast()){
+        while(r.next()){
             Funcionario f = new Funcionario();
             f.setIdFuncionario(r.getInt("idFuncionario"));
             f.setNome(r.getString("nome"));
@@ -120,7 +123,6 @@ public class BDController {
             f.setSexo(r.getString("sexo"));
             f.setCpf(r.getString("cpf"));
             funcionarios.add(f);
-            r.next();
         }
         
         return funcionarios;
@@ -136,7 +138,11 @@ public class BDController {
                 + "salario = '"+f.getSalario()+"', "
                 + "cpf = '"+f.getCpf()+"', "
                 + "idGerente = '"+f.getIdGerente()+"', "
+                + "sexo = '"+f.getSexo()+"', "
                 + " WHERE idFuncionario = '"+f.getIdFuncionario()+"'";
+        
+        conn.executaSQL(query);
+        conn.fechaConexao();
     }
     
     //</editor-fold>
@@ -156,6 +162,27 @@ public class BDController {
         conn.executaSQL(query);
         conn.fechaConexao();
     }
+    
+    public ArrayList<Loja> selectAllLoja() throws ClassNotFoundException, SQLException{
+        this.conn = ConexaoBD.getInstance();
+
+        ArrayList<Loja> lojas = new ArrayList();
+        String query = "SELECT * FROM Loja";
+        ResultSet r = this.conn.executaSQL(query);
+        
+        while(r.next()){
+            Loja l = new Loja();
+            l.setCategoria(r.getString("categoria"));
+            l.setIdLoja(r.getInt("idLoja"));
+            l.setLocal(r.getString("local"));
+            l.setNome(r.getString("nome"));
+            lojas.add(l);
+        }
+        
+        return lojas;
+    }
+    
+    
 
     public void insereProduto(Produto p) throws ClassNotFoundException, SQLException {
         String nome, marca, tipo;
