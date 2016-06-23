@@ -194,20 +194,14 @@ public class InsercaoFuncionario extends javax.swing.JFrame {
                         jTextField5.getText().toString(),
                         jTextField6.getText().toString(),
                         Integer.valueOf(jTextField7.getText().toString()));
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(InsercaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(InsercaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            try {
+                
                 bDController.insereFuncionario(funcionario);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InsercaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(InsercaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             this.dispose();            
         }
     }//GEN-LAST:event_jButton1ActionPerformed

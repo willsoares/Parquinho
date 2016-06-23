@@ -10,6 +10,7 @@ import gui.insercao.InsercaoFuncionario;
 import gui.insercao.InsercaoLoja;
 import gui.insercao.InsercaoAtracao;
 import banco.ConexaoBD;
+import gui.atualizacao.AtualizacaoFuncionario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -235,7 +236,16 @@ public class Main extends javax.swing.JFrame {
 
         //If a string was returned, say so.
         if ((s != null) && (s.length() > 0)) {
-            System.out.println(s);
+            AtualizacaoFuncionario atualizacaoFuncionario;
+            try {
+                atualizacaoFuncionario = new AtualizacaoFuncionario(Integer.parseInt(s));
+                atualizacaoFuncionario.setVisible(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
             return;
         }
     }//GEN-LAST:event_jButton6ActionPerformed
