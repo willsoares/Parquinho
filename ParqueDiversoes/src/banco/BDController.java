@@ -92,6 +92,8 @@ public class BDController {
         f.setSalario(r.getInt("salario"));
         f.setSexo(r.getString("sexo"));
         f.setCpf(r.getString("cpf"));
+        f.setIdGerente(r.getInt("idGerente"));
+
 
         conn.fechaConexao();
 
@@ -122,6 +124,7 @@ public class BDController {
             f.setSalario(r.getInt("salario"));
             f.setSexo(r.getString("sexo"));
             f.setCpf(r.getString("cpf"));
+            f.setIdGerente(r.getInt("idGerente"));
             funcionarios.add(f);
         }
         
