@@ -150,14 +150,14 @@ public class BDController {
     public Funcionario contataEspecialista(String cargo) throws ClassNotFoundException, SQLException{
         String query = "select contata_especialista("+cargo+")";
         
-        this.conn = ConexaoBD;
+        this.conn = new ConexaoBD();
         ResultSet r = this.conn.executaSQL(query);
-        this.conn.fechaConexao();
         
         StringBuilder sb = new StringBuilder();
         r.next();
         int idFunc = r.getInt("idFuncionario");
         
+        this.conn.fechaConexao();
         return this.selectFuncionarioById(idFunc);
     }
     //</editor-fold>
