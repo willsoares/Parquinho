@@ -132,7 +132,7 @@ public class AtualizaEstoque extends javax.swing.JFrame {
             try {
                 bDController.atualizaEstoque(Integer.valueOf(jTextField1.getText().toString()),
                         Integer.valueOf(jTextField2.getText().toString()),
-                        Double.valueOf(jTextField2.getText().toString()));
+                        Double.valueOf(jTextField3.getText().toString()));
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AtualizaEstoque.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
