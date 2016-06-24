@@ -16,7 +16,7 @@ import gui.atualizacao.AtualizacaoFuncionario;
 import gui.atualizacao.AtualizacaoLoja;
 import gui.atualizacao.AtualizacaoProduto;
 import gui.funcions.AtualizaEstoque;
-import gui.funcions.SolicitaFucnionario;
+import gui.funcions.SolicitaFuncionario;
 import gui.insercao.InsercaoEstoque;
 import gui.insercao.InsercaoFuncionarioAtracao;
 import gui.insercao.InsercaoFuncionarioLoja;
