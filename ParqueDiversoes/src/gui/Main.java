@@ -15,6 +15,7 @@ import gui.atualizacao.AtualizacaoAtracao;
 import gui.atualizacao.AtualizacaoFuncionario;
 import gui.atualizacao.AtualizacaoLoja;
 import gui.atualizacao.AtualizacaoProduto;
+import gui.funcions.AtualizaEstoque;
 import gui.funcions.SolicitaFucnionario;
 import gui.insercao.InsercaoEstoque;
 import gui.insercao.InsercaoFuncionarioAtracao;
@@ -279,6 +280,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton26.setText("Reestocar Loja");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         jButton27.setText("Adiciona Produto ao Estoque");
         jButton27.addActionListener(new java.awt.event.ActionListener() {
@@ -779,13 +785,16 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        RemoveEstoque removeEstoque = new RemoveEstoque();
-        removeEstoque.setVisible(true);
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
+        RemoveEstoque removeEstoque = new RemoveEstoque();
+        removeEstoque.setVisible(true);
     }//GEN-LAST:event_jButton28ActionPerformed
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        AtualizaEstoque atualizaEstoque = new AtualizaEstoque();
+        atualizaEstoque.setVisible(true);
+    }//GEN-LAST:event_jButton26ActionPerformed
 
     /**
      * @param args the command line arguments
