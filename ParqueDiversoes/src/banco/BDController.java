@@ -147,6 +147,19 @@ public class BDController {
         this.conn.fechaConexao();
     }
 
+    public Funcionario contataEspecialista(String cargo) throws ClassNotFoundException, SQLException{
+        String query = "CALL contata_especialista("+cargo+")";
+        
+        this.conn = ConexaoBD.getInstance();
+        ResultSet r = this.conn.executaSQL(query);
+        this.conn.fechaConexao();
+        
+        StringBuilder sb = new StringBuilder();
+        r.next();
+        int idFunc = r.getInt("idFuncionario");
+        
+        return this.selectFuncionarioById(idFunc);
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Loja">
@@ -392,6 +405,8 @@ public class BDController {
         this.conn.executaSQL(query);
         this.conn.fechaConexao();
     }
+    
+
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Funcionario_Loja">
@@ -566,6 +581,13 @@ public class BDController {
         }
         return estoque;
     }
+    
+    public void reestocar(int idLoja, int idProduto, double quantidade) throws ClassNotFoundException, SQLException{
+        String query = "CALL reestocar ("+idLoja+", "+idProduto+", "+quantidade+")";
+        this.conn = new ConexaoBD();
+        conn.executaSQL(query);
+        conn.fechaConexao();
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Views">
@@ -573,7 +595,7 @@ public class BDController {
         String query = "SELECT * FROM visao_trabalha_em;";
         
         
-        this.conn = new ConexaoBD();
+        this.conn = ConexaoBD.getInstance();
         ResultSet r = conn.executaSQL(query);
         
         StringBuilder sb = new StringBuilder();
