@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.funcions;
+package gui.functions;
 
 import banco.BDController;
 import java.sql.SQLException;
