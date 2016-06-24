@@ -15,6 +15,7 @@ import gui.atualizacao.AtualizacaoAtracao;
 import gui.atualizacao.AtualizacaoFuncionario;
 import gui.atualizacao.AtualizacaoLoja;
 import gui.atualizacao.AtualizacaoProduto;
+import gui.funcions.AtualizaEstoque;
 import gui.funcions.SolicitaFucnionario;
 import gui.insercao.InsercaoFuncionarioAtracao;
 import gui.insercao.InsercaoFuncionarioLoja;
@@ -276,6 +277,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton26.setText("Reestocar Loja");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -762,6 +768,11 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        AtualizaEstoque atualizaEstoque = new AtualizaEstoque();
+        atualizaEstoque.setVisible(true);
+    }//GEN-LAST:event_jButton26ActionPerformed
 
     /**
      * @param args the command line arguments
