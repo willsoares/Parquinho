@@ -148,7 +148,7 @@ public class BDController {
     }
 
     public Funcionario contataEspecialista(String cargo) throws ClassNotFoundException, SQLException{
-        String query = "CALL contata_especialista("+cargo+")";
+        String query = "select contata_especialista("+cargo+")";
         
         this.conn = ConexaoBD.getInstance();
         ResultSet r = this.conn.executaSQL(query);
